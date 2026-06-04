@@ -1,0 +1,43 @@
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='NailApp'*/[0m
+  [1m[35m (401.9ms)[0m  [1m[35mCREATE DATABASE "nail_app_development" ENCODING = 'unicode' /*application='NailApp'*/[0m
+  [1m[35m (268.4ms)[0m  [1m[35mCREATE DATABASE "nail_app_test" ENCODING = 'unicode' /*application='NailApp'*/[0m
+  [1m[35m (39.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='NailApp'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='NailApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4000868634006947430) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-06-04 18:21:35.852612', '2026-06-04 18:21:35.852616') RETURNING "key" /*application='NailApp'*/[0m
+Migrating to CreateClients (20260604175137)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='NailApp'*/[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "clients" ("id" bigserial primary key, "name" character varying, "phone" character varying, "email" character varying, "notes" text, "vip" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260604175137') RETURNING "version" /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='NailApp'*/[0m
+Migrating to CreateServices (20260604175215)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='NailApp'*/[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE TABLE "services" ("id" bigserial primary key, "name" character varying, "duration_minutes" integer, "price" decimal, "description" text, "active" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260604175215') RETURNING "version" /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='NailApp'*/[0m
+Migrating to CreateAppointments (20260604175243)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='NailApp'*/[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "appointments" ("id" bigserial primary key, "client_id" bigint NOT NULL, "service_id" bigint NOT NULL, "scheduled_at" timestamp(6), "status" character varying, "notes" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_6497fe64e8"
+FOREIGN KEY ("client_id")
+  REFERENCES "clients" ("id")
+, CONSTRAINT "fk_rails_486091c262"
+FOREIGN KEY ("service_id")
+  REFERENCES "services" ("id")
+) /*application='NailApp'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_appointments_on_client_id" ON "appointments" ("client_id") /*application='NailApp'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_appointments_on_service_id" ON "appointments" ("service_id") /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260604175243') RETURNING "version" /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*application='NailApp'*/[0m
+Migrating to CreateUsers (20260604175353)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='NailApp'*/[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "role" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260604175353') RETURNING "version" /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='NailApp'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4000868634006947430) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='NailApp'*/[0m
