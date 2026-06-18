@@ -41,3 +41,188 @@ Migrating to CreateUsers (20260604175353)
   [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='NailApp'*/[0m
   [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='NailApp'*/[0m
   [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='NailApp'*/[0m
+Started GET "/" for ::1 at 2026-06-18 12:00:39 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (5.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+Processing by DashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 120.3ms | GC: 0.0ms)
+Completed 200 OK in 499ms (Views: 161.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-18 12:00:42 -0600
+Processing by DashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 66.4ms | GC: 0.0ms)
+Completed 200 OK in 74ms (Views: 67.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-18 12:00:43 -0600
+Processing by DashboardController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4000868634006947430) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='NailApp'*/[0m
+Migrating to AddDeviseToUsers (20260618182814)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='NailApp'*/[0m
+  [1m[35m (10.2ms)[0m  [1m[35mALTER TABLE "users" ADD "email" character varying DEFAULT '' NOT NULL /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*application='NailApp'*/[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4000868634006947430) /*application='NailApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4000868634006947430) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='NailApp'*/[0m
+Migrating to AddDeviseToUsers (20260618182814)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='NailApp'*/[0m
+  [1m[35m (36.1ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" character varying DEFAULT '' NOT NULL /*application='NailApp'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" character varying /*application='NailApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" timestamp(6) /*application='NailApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" timestamp(6) /*application='NailApp'*/[0m
+  [1m[35m (31.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260618182814') RETURNING "version" /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='NailApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(4000868634006947430) /*application='NailApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='NailApp'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='NailApp'*/[0m
+Started GET "/" for ::1 at 2026-06-18 12:31:15 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+Processing by DashboardController#index as HTML
+Completed 401 Unauthorized in 29ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-06-18 12:31:16 -0600
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 76.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 97.8ms | GC: 0.0ms)
+Completed 200 OK in 226ms (Views: 122.8ms | ActiveRecord: 11.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='NailApp'*/[0m
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'yeri@nailapp.com' LIMIT 1 /*application='NailApp'*/[0m
+  [1m[36mUser Create (4.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "role", "created_at", "updated_at", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at") VALUES ('Yeri', 'yeri@nailapp.com', 'admin', '2026-06-18 18:32:47.775878', '2026-06-18 18:32:47.775878', '$2a$12$k4yyAmkerwEWwCqeKUMRS.xzWQN4rlqPMFpY2R9J.HvmvgWpW1LyW', NULL, NULL, NULL) RETURNING "id" /*application='NailApp'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*application='NailApp'*/[0m
+Started GET "/users/sign_in" for ::1 at 2026-06-18 12:33:26 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 15.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.4ms | GC: 0.0ms)
+Completed 200 OK in 157ms (Views: 64.2ms | ActiveRecord: 11.6ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-06-18 12:33:47 -0600
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'yeri@nailapp.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='sessions'*/[0m
+Completed 401 Unauthorized in 187ms (ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by Devise::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 162ms (Views: 2.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-06-18 12:33:59 -0600
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'yeri@nailapp.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='sessions'*/[0m
+Completed 401 Unauthorized in 160ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by Devise::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 161ms (Views: 2.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1 /*application='NailApp'*/[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1 /*application='NailApp'*/[0m
+Started GET "/users/sign_in" for ::1 at 2026-06-18 12:39:40 -0600
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='NailApp'*/[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 17.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 35.4ms | GC: 0.0ms)
+Completed 200 OK in 170ms (Views: 68.6ms | ActiveRecord: 12.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-06-18 12:39:44 -0600
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'editoreventos@conapdis.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='sessions'*/[0m
+Completed 401 Unauthorized in 27ms (ActiveRecord: 1.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by Devise::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 174ms (Views: 2.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-06-18 12:39:46 -0600
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'editoreventos@conapdis.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='sessions'*/[0m
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by Devise::SessionsController#new as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/shared/_links.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/devise-5.0.4/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 161ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-06-18 12:40:23 -0600
+Processing by Devise::SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "remember_me" => "0"}, "commit" => "Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'yeri@nailapp.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='sessions'*/[0m
+Redirected to http://localhost:3000/
+Completed 303 See Other in 323ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-18 12:40:24 -0600
+Processing by DashboardController#index as TURBO_STREAM
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 20ms (Views: 7.4ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
