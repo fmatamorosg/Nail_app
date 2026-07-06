@@ -1,15 +1,11 @@
+import Sidebar from '@/components/Sidebar'
 import {
-  BarChart3,
   Bell,
   Calendar,
   Clock,
   DollarSign,
-  Home,
-  MessageSquare,
   Plus,
-  Settings,
   UserPlus,
-  Users,
 } from 'lucide-react'
 
 interface Appointment {
@@ -48,15 +44,6 @@ interface DashboardProps {
   popular_services: PopularService[]
 }
 
-const navItems = [
-  { label: 'Inicio', icon: Home, active: true },
-  { label: 'Citas', icon: Calendar, active: false },
-  { label: 'Clientes', icon: Users, active: false },
-  { label: 'Estadísticas', icon: BarChart3, active: false },
-  { label: 'Mensajes', icon: MessageSquare, active: false },
-  { label: 'Configuración', icon: Settings, active: false },
-]
-
 const statusLabels: Record<Appointment['status'], string> = {
   pending: 'Pendiente',
   confirmed: 'Confirmada',
@@ -72,15 +59,11 @@ const statusStyles: Record<Appointment['status'], string> = {
 }
 
 function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('es-MX', {
+  return new Intl.NumberFormat('es-CR', {
     style: 'currency',
-    currency: 'MXN',
+    currency: 'CRC',
     minimumFractionDigits: 0,
   }).format(amount)
-}
-
-function userInitial(name: string): string {
-  return name.trim().charAt(0).toUpperCase()
 }
 
 export default function Index({
@@ -124,48 +107,7 @@ export default function Index({
 
   return (
     <div className="flex min-h-screen bg-slate-50">
-      <aside className="fixed inset-y-0 left-0 flex w-64 flex-col bg-slate-900 text-white">
-        <div className="border-b border-slate-800 px-6 py-8">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-pink-500 text-lg font-bold">
-              NS
-            </div>
-            <div>
-              <p className="font-semibold">Nail Studio</p>
-              <p className="text-sm text-slate-400">Panel de control</p>
-            </div>
-          </div>
-        </div>
-
-        <nav className="flex-1 space-y-1 px-4 py-6">
-          {navItems.map(({ label, icon: Icon, active }) => (
-            <a
-              key={label}
-              href="#"
-              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                active
-                  ? 'bg-slate-800 text-white'
-                  : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-              }`}
-            >
-              <Icon className="h-5 w-5" />
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="border-t border-slate-800 px-4 py-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-pink-500 text-sm font-semibold">
-              {userInitial(user_name)}
-            </div>
-            <div>
-              <p className="text-sm font-medium">{user_name}</p>
-              <p className="text-xs text-slate-400">Administrador</p>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <Sidebar active="Inicio" userName={user_name} />
 
       <main className="ml-64 flex-1 p-8">
         <header className="mb-8 flex items-start justify-between">
