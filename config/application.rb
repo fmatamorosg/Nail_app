@@ -26,5 +26,7 @@ module NailApp
 
     config.i18n.default_locale = :es
     config.i18n.available_locales = [:es, :en]
+    config.time_zone = "Central America"
+    config.active_record.default_timezone = :local
   end
 end
