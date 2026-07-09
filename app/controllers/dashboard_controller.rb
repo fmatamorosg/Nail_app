@@ -1,20 +1,15 @@
 class DashboardController < ApplicationController
   def index
-    today = Date.current
-
-    today_appointments_scope = Appointment.where(scheduled_at: today.all_day)
-
     render inertia: "Dashboard/Index", props: {
       user_name: current_user.name,
-      today_date: I18n.l(today, format: "%A, %d de %B de %Y"),
+      today_date: I18n.l(Date.current, format: "%A, %d de %B de %Y"),
       stats: {
-        appointments_today: today_appointments_scope.count,
-        revenue_month: Appointment.where(scheduled_at: today.beginning_of_month..today.end_of_month, status: "completed")
-                                   .joins(:service).sum("services.price"),
-        new_clients_month: Client.where(created_at: today.beginning_of_month..today.end_of_month).count,
-        pending_confirmations: Appointment.where(status: "pending").count
+        appointments_today: Appointment.today.count,
+        revenue_month: Appointment.completed.this_month.joins(:service).sum("services.price"),
+        new_clients_month: Client.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month).count,
+        pending_confirmations: Appointment.pending.count
       },
-      today_appointments: today_appointments_scope.includes(:client, :service).order(:scheduled_at).map do |appt|
+      today_appointments: Appointment.today.includes(:client, :service).order(:scheduled_at).map do |appt|
         {
           id: appt.id,
           client_name: appt.client.name,
@@ -24,7 +19,7 @@ class DashboardController < ApplicationController
         }
       end,
       recent_clients: Client.order(created_at: :desc).limit(5).map do |client|
-        completed = client.appointments.where(status: "completed")
+        completed = client.appointments.completed
         {
           id: client.id,
           name: client.name,
