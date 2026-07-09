@@ -1,4 +1,5 @@
 import Sidebar from '@/components/Sidebar'
+import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import {
   Bell,
@@ -43,14 +44,6 @@ interface DashboardProps {
   today_appointments: Appointment[]
   recent_clients: Client[]
   popular_services: PopularService[]
-}
-
-function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('es-CR', {
-    style: 'currency',
-    currency: 'CRC',
-    minimumFractionDigits: 0,
-  }).format(amount)
 }
 
 export default function Index({

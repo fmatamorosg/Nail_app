@@ -3881,3 +3881,458 @@ Processing by AppointmentsController#index as HTML
 Completed 200 OK in 16ms (Views: 0.3ms | ActiveRecord: 1.6ms (9 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/appointments" for ::1 at 2026-07-09 10:56:23 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (67.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.4ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (17, 16, 15, 18, 19, 20, 21) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.8ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (15, 14, 13, 16, 17, 18) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-06' AND '2026-07-12' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:35:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:36:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:37:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+Building with Vite ⚡️
+Started GET "/" for ::1 at 2026-07-09 10:56:27 -0600
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-09 00:00:00' AND '2026-07-09 23:59:59.999999' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:17:in 'DashboardController#stats'
+  [1m[36mAppointment Sum (0.4ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."status" = 'completed' AND "appointments"."scheduled_at" BETWEEN '2026-07-01' AND '2026-07-31' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:18:in 'DashboardController#stats'
+  [1m[36mClient Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "clients" WHERE "clients"."created_at" BETWEEN '2026-07-01' AND '2026-07-31' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:19:in 'DashboardController#stats'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:20:in 'DashboardController#stats'
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-09 00:00:00' AND '2026-07-09 23:59:59.999999' ORDER BY "appointments"."scheduled_at" ASC /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:25:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (15, 16, 17, 18, 19, 20, 21) /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:25:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (14, 15, 16, 17, 18, 13) /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:25:in 'Enumerable#map'
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients" ORDER BY "clients"."created_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:37:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.4ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 21 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.3ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 21 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 21 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 20 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 20 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 20 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 19 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 19 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 19 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 18 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 18 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 18 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 17 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 17 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 17 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT "services".* FROM "services" LEFT OUTER JOIN "appointments" ON "appointments"."service_id" = "services"."id" GROUP BY "services"."id" ORDER BY COUNT(appointments.id) DESC LIMIT 5 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:54:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 15 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 13 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 14 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 18 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 17 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+Completed 200 OK in 56ms (Views: 0.5ms | ActiveRecord: 7.1ms (30 queries, 0 cached) | GC: 0.0ms)
+
+
+[36mvite v8.1.3 [32mbuilding client environment for development...[36m[39m
+
+[2K
+
+transforming...✓ 2311 modules transformed.
+
+[2m10:56:28 AM[22m [33m[1m[vite][22m[39m [33mwarning: Both `rollupOptions` and `rolldownOptions` were specified by "vite-plugin-ruby" plugin. `rollupOptions` specified by that plugin will be ignored.[39m
+[31m✗[39m Build failed in 6.28s
+[31merror during build:
+[31mBuild failed with 1 error:
+
+[plugin vite:prepare-out-dir]
+Error: EPERM, Permission denied: \\?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets '\\?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets'
+    at Object.rmSync (node:fs:1221:18)
+    at emptyDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:2145:11)
+    at prepareOutDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32345:55)
+    at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32334:6)
+    at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32882:13)
+    at plugin (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1598:12)
+    at plugin.<computed> (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1961:18)[31m
+    at aggregateBindingErrorsIntoJsError (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:48:18)
+    at unwrapBindingResult (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:18:128)
+    at #build (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/rolldown-build-aV0QeeTW.mjs:3256:34)
+    at async buildEnvironment (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32622:66)
+    at async Object.build (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33044:19)
+    at async Object.buildApp (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33041:153)
+    at async CAC.<anonymous> (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/cli.js:777:3) {
+  errors: [Getter/Setter]
+}[39m
+npm notice
+npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+npm notice To update run: npm install -g npm@11.18.0
+npm notice
+
+#<Process::Status: pid 18296 exit 1>
+Build with Vite failed! ❌
+  Rendered layout layouts/application.html.erb (Duration: 11292.7ms | GC: 15.6ms)
+Completed 500 Internal Server Error in 11381ms (ActiveRecord: 77.2ms (9 queries, 0 cached) | GC: 15.6ms)
+
+
+  
+ActionView::Template::Error (Vite Ruby can't find entrypoints/application.css in the manifests.
+
+Possible causes:
+  - The last build failed. Try running `bin/vite build --clear --mode=development` manually and check for errors.
+
+Errors:
+  [2m10:56:28 AM[22m [33m[1m[vite][22m[39m [33mwarning: Both `rollupOptions` and `rolldownOptions` were specified by "vite-plugin-ruby" plugin. `rollupOptions` specified by that plugin will be ignored.[39m
+  [31m✗[39m Build failed in 6.28s
+  [31merror during build:
+  [31mBuild failed with 1 error:
+
+  [plugin vite:prepare-out-dir]
+  Error: EPERM, Permission denied: \?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets '\?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets'
+      at Object.rmSync (node:fs:1221:18)
+      at emptyDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:2145:11)
+      at prepareOutDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32345:55)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32334:6)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32882:13)
+      at plugin (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1598:12)
+      at plugin.<computed> (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1961:18)[31m
+      at aggregateBindingErrorsIntoJsError (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:48:18)
+      at unwrapBindingResult (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:18:128)
+      at #build (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/rolldown-build-aV0QeeTW.mjs:3256:34)
+      at async buildEnvironment (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32622:66)
+      at async Object.build (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33044:19)
+      at async Object.buildApp (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33041:153)
+      at async CAC.<anonymous> (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/cli.js:777:3) {
+    errors: [Getter/Setter]
+  }[39m
+  npm notice
+  npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+  npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+  npm notice To update run: npm install -g npm@11.18.0
+  npm notice
+
+
+Visit the Troubleshooting guide for more information:
+  https://vite-ruby.netlify.app/guide/troubleshooting.html#troubleshooting
+
+
+
+)
+Caused by: ViteRuby::MissingEntrypointError (Vite Ruby can't find entrypoints/application.css in the manifests.
+
+Possible causes:
+  - The last build failed. Try running `bin/vite build --clear --mode=development` manually and check for errors.
+
+Errors:
+  [2m10:56:28 AM[22m [33m[1m[vite][22m[39m [33mwarning: Both `rollupOptions` and `rolldownOptions` were specified by "vite-plugin-ruby" plugin. `rollupOptions` specified by that plugin will be ignored.[39m
+  [31m✗[39m Build failed in 6.28s
+  [31merror during build:
+  [31mBuild failed with 1 error:
+
+  [plugin vite:prepare-out-dir]
+  Error: EPERM, Permission denied: \?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets '\?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets'
+      at Object.rmSync (node:fs:1221:18)
+      at emptyDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:2145:11)
+      at prepareOutDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32345:55)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32334:6)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32882:13)
+      at plugin (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1598:12)
+      at plugin.<computed> (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1961:18)[31m
+      at aggregateBindingErrorsIntoJsError (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:48:18)
+      at unwrapBindingResult (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:18:128)
+      at #build (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/rolldown-build-aV0QeeTW.mjs:3256:34)
+      at async buildEnvironment (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32622:66)
+      at async Object.build (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33044:19)
+      at async Object.buildApp (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33041:153)
+      at async CAC.<anonymous> (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/cli.js:777:3) {
+    errors: [Getter/Setter]
+  }[39m
+  npm notice
+  npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+  npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+  npm notice To update run: npm install -g npm@11.18.0
+  npm notice
+
+
+Visit the Troubleshooting guide for more information:
+  https://vite-ruby.netlify.app/guide/troubleshooting.html#troubleshooting
+
+
+
+)
+
+Information for: ActionView::Template::Error (Vite Ruby can't find entrypoints/application.css in the manifests.
+
+Possible causes:
+  - The last build failed. Try running `bin/vite build --clear --mode=development` manually and check for errors.
+
+Errors:
+  [2m10:56:28 AM[22m [33m[1m[vite][22m[39m [33mwarning: Both `rollupOptions` and `rolldownOptions` were specified by "vite-plugin-ruby" plugin. `rollupOptions` specified by that plugin will be ignored.[39m
+  [31m✗[39m Build failed in 6.28s
+  [31merror during build:
+  [31mBuild failed with 1 error:
+
+  [plugin vite:prepare-out-dir]
+  Error: EPERM, Permission denied: \?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets '\?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets'
+      at Object.rmSync (node:fs:1221:18)
+      at emptyDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:2145:11)
+      at prepareOutDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32345:55)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32334:6)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32882:13)
+      at plugin (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1598:12)
+      at plugin.<computed> (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1961:18)[31m
+      at aggregateBindingErrorsIntoJsError (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:48:18)
+      at unwrapBindingResult (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:18:128)
+      at #build (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/rolldown-build-aV0QeeTW.mjs:3256:34)
+      at async buildEnvironment (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32622:66)
+      at async Object.build (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33044:19)
+      at async Object.buildApp (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33041:153)
+      at async CAC.<anonymous> (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/cli.js:777:3) {
+    errors: [Getter/Setter]
+  }[39m
+  npm notice
+  npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+  npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+  npm notice To update run: npm install -g npm@11.18.0
+  npm notice
+
+
+Visit the Troubleshooting guide for more information:
+  https://vite-ruby.netlify.app/guide/troubleshooting.html#troubleshooting
+
+
+
+):
+    21:     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    22:     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    23:     <%= vite_stylesheet_tag "application" %>
+    24:     <%= vite_react_refresh_tag %>
+    25:     <%= vite_client_tag %>
+    26:     <%= vite_typescript_tag "inertia.tsx" %>
+    27:     <%= inertia_ssr_head %>
+  
+app/views/layouts/application.html.erb:24
+app/controllers/appointments_controller.rb:23:in 'AppointmentsController#index'
+
+Information for cause: ViteRuby::MissingEntrypointError (Vite Ruby can't find entrypoints/application.css in the manifests.
+
+Possible causes:
+  - The last build failed. Try running `bin/vite build --clear --mode=development` manually and check for errors.
+
+Errors:
+  [2m10:56:28 AM[22m [33m[1m[vite][22m[39m [33mwarning: Both `rollupOptions` and `rolldownOptions` were specified by "vite-plugin-ruby" plugin. `rollupOptions` specified by that plugin will be ignored.[39m
+  [31m✗[39m Build failed in 6.28s
+  [31merror during build:
+  [31mBuild failed with 1 error:
+
+  [plugin vite:prepare-out-dir]
+  Error: EPERM, Permission denied: \?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets '\?\C:\Users\USER\Documents\nail_app\public\vite-dev\assets'
+      at Object.rmSync (node:fs:1221:18)
+      at emptyDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:2145:11)
+      at prepareOutDir (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32345:55)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32334:6)
+      at PluginContextImpl.handler (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32882:13)
+      at plugin (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1598:12)
+      at plugin.<computed> (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/bindingify-input-options-BsDhfYrS.mjs:1961:18)[31m
+      at aggregateBindingErrorsIntoJsError (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:48:18)
+      at unwrapBindingResult (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/error-BlQ0-ek7.mjs:18:128)
+      at #build (file:///C:/Users/USER/Documents/nail_app/node_modules/rolldown/dist/shared/rolldown-build-aV0QeeTW.mjs:3256:34)
+      at async buildEnvironment (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:32622:66)
+      at async Object.build (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33044:19)
+      at async Object.buildApp (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/chunks/node.js:33041:153)
+      at async CAC.<anonymous> (file:///C:/Users/USER/Documents/nail_app/node_modules/vite/dist/node/cli.js:777:3) {
+    errors: [Getter/Setter]
+  }[39m
+  npm notice
+  npm notice New minor version of npm available! 11.9.0 -> 11.18.0
+  npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.18.0
+  npm notice To update run: npm install -g npm@11.18.0
+  npm notice
+
+
+Visit the Troubleshooting guide for more information:
+  https://vite-ruby.netlify.app/guide/troubleshooting.html#troubleshooting
+
+
+
+):
+  
+app/views/layouts/application.html.erb:24
+app/controllers/appointments_controller.rb:23:in 'AppointmentsController#index'
+Started GET "/appointments" for ::1 at 2026-07-09 10:56:35 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (17, 16, 15, 18, 19, 20, 21) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (15, 14, 13, 16, 17, 18) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-06' AND '2026-07-12' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:35:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:36:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:37:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+Completed 200 OK in 20ms (Views: 0.4ms | ActiveRecord: 2.3ms (9 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-07-09 10:56:35 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/appointments?search=isabella" for ::1 at 2026-07-09 10:56:48 -0600
+Processing by AppointmentsController#index as HTML
+  Parameters: {"search" => "isabella"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM (SELECT DISTINCT "appointments"."id" FROM "appointments" INNER JOIN "clients" ON "clients"."id" = "appointments"."client_id" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE (clients.name ILIKE '%isabella%' OR services.name ILIKE '%isabella%')) subquery_for_count /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Eager Load (0.5ms)[0m  [1m[34mSELECT "appointments"."id" AS t0_r0, "appointments"."client_id" AS t0_r1, "appointments"."service_id" AS t0_r2, "appointments"."scheduled_at" AS t0_r3, "appointments"."status" AS t0_r4, "appointments"."notes" AS t0_r5, "appointments"."created_at" AS t0_r6, "appointments"."updated_at" AS t0_r7, "clients"."id" AS t1_r0, "clients"."name" AS t1_r1, "clients"."phone" AS t1_r2, "clients"."email" AS t1_r3, "clients"."notes" AS t1_r4, "clients"."vip" AS t1_r5, "clients"."created_at" AS t1_r6, "clients"."updated_at" AS t1_r7, "services"."id" AS t2_r0, "services"."name" AS t2_r1, "services"."duration_minutes" AS t2_r2, "services"."price" AS t2_r3, "services"."description" AS t2_r4, "services"."active" AS t2_r5, "services"."created_at" AS t2_r6, "services"."updated_at" AS t2_r7 FROM "appointments" INNER JOIN "clients" ON "clients"."id" = "appointments"."client_id" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE (clients.name ILIKE '%isabella%' OR services.name ILIKE '%isabella%') ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-06' AND '2026-07-12' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:35:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:36:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:37:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+Building with Vite ⚡️
+[36mvite v8.1.3 [32mbuilding client environment for development...[36m[39m
+
+[2K
+
+transforming...✓ 2311 modules transformed.
+
+rendering chunks...
+
+computing gzip size...
+
+public/vite-dev/.vite/manifest-assets.json         0.00 kB │ gzip:   0.02 kB
+
+public/vite-dev/.vite/manifest.json                0.61 kB │ gzip:   0.20 kB
+
+public/vite-dev/assets/application-M58qm6dy.css   15.49 kB │ gzip:   3.88 kB
+
+public/vite-dev/assets/application-BvRk9kiK.js     0.00 kB │ gzip:   0.02 kB
+
+public/vite-dev/assets/inertia-BAA0EyvY.js       331.36 kB │ gzip: 102.81 kB
+
+
+
+[32m✓ built in 317ms[39m
+
+Build with Vite complete: C:/Users/USER/Documents/nail_app/public/vite-dev
+[2m10:56:49 AM[22m [33m[1m[vite][22m[39m [33mwarning: Both `rollupOptions` and `rolldownOptions` were specified by "vite-plugin-ruby" plugin. `rollupOptions` specified by that plugin will be ignored.[39m
+
+Skipping vite build. Watched files have not changed since the last build at 2026-07-09 10:56:50
+Skipping vite build. Watched files have not changed since the last build at 2026-07-09 10:56:50
+  Rendered layout layouts/application.html.erb (Duration: 1748.9ms | GC: 0.0ms)
+Completed 200 OK in 1764ms (Views: 1749.7ms | ActiveRecord: 2.1ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-07-09 10:56:54 -0600
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 3 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-09 00:00:00' AND '2026-07-09 23:59:59.999999' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:17:in 'DashboardController#stats'
+  [1m[36mAppointment Sum (0.3ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."status" = 'completed' AND "appointments"."scheduled_at" BETWEEN '2026-07-01' AND '2026-07-31' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:18:in 'DashboardController#stats'
+  [1m[36mClient Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "clients" WHERE "clients"."created_at" BETWEEN '2026-07-01' AND '2026-07-31' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:19:in 'DashboardController#stats'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:20:in 'DashboardController#stats'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-09 00:00:00' AND '2026-07-09 23:59:59.999999' ORDER BY "appointments"."scheduled_at" ASC /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:25:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (15, 16, 17, 18, 19, 20, 21) /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:25:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (14, 15, 16, 17, 18, 13) /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:25:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" ORDER BY "clients"."created_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:37:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 21 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 21 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 21 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 20 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 20 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 20 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 19 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 19 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 19 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 18 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 18 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 18 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 17 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 17 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 17 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT "services".* FROM "services" LEFT OUTER JOIN "appointments" ON "appointments"."service_id" = "services"."id" GROUP BY "services"."id" ORDER BY COUNT(appointments.id) DESC LIMIT 5 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:54:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 15 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 13 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 14 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 18 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 17 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+Completed 200 OK in 45ms (Views: 0.3ms | ActiveRecord: 5.5ms (30 queries, 0 cached) | GC: 0.0ms)
+
+
