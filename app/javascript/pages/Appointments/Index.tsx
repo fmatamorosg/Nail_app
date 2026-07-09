@@ -1,4 +1,5 @@
 import Sidebar from '@/components/Sidebar'
+import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { Link, router } from '@inertiajs/react'
 import {
   Bell,
@@ -16,7 +17,7 @@ interface Appointment {
   date: string
   time: string
   service_name: string
-  status: 'pending' | 'confirmed' | 'completed' | 'cancelled'
+  status: AppointmentStatus
 }
 
 interface AppointmentsProps {
@@ -38,20 +39,6 @@ interface AppointmentsProps {
     pages: number
     count: number
   }
-}
-
-const statusLabels: Record<Appointment['status'], string> = {
-  pending: 'Pendiente',
-  confirmed: 'Confirmada',
-  completed: 'Completada',
-  cancelled: 'Cancelada',
-}
-
-const statusStyles: Record<Appointment['status'], string> = {
-  pending: 'bg-amber-100 text-amber-800',
-  confirmed: 'bg-blue-100 text-blue-800',
-  completed: 'bg-emerald-100 text-emerald-800',
-  cancelled: 'bg-slate-100 text-slate-600',
 }
 
 const statusPills = [

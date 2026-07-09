@@ -1,4 +1,5 @@
 import Sidebar from '@/components/Sidebar'
+import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import {
   Bell,
   Calendar,
@@ -13,7 +14,7 @@ interface Appointment {
   client_name: string
   time: string
   service_name: string
-  status: 'pending' | 'confirmed' | 'completed' | 'cancelled'
+  status: AppointmentStatus
 }
 
 interface Client {
@@ -42,20 +43,6 @@ interface DashboardProps {
   today_appointments: Appointment[]
   recent_clients: Client[]
   popular_services: PopularService[]
-}
-
-const statusLabels: Record<Appointment['status'], string> = {
-  pending: 'Pendiente',
-  confirmed: 'Confirmada',
-  completed: 'Completada',
-  cancelled: 'Cancelada',
-}
-
-const statusStyles: Record<Appointment['status'], string> = {
-  pending: 'bg-amber-100 text-amber-800',
-  confirmed: 'bg-blue-100 text-blue-800',
-  completed: 'bg-emerald-100 text-emerald-800',
-  cancelled: 'bg-slate-100 text-slate-600',
 }
 
 function formatCurrency(amount: number): string {
