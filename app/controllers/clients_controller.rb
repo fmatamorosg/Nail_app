@@ -21,6 +21,24 @@ class ClientsController < ApplicationController
     }, as: :json
   end
 
+  def create
+    client = Client.new(client_params)
+    if client.save
+      redirect_to clients_path, notice: "Cliente creado correctamente"
+    else
+      redirect_to clients_path, inertia: { errors: client.errors }
+    end
+  end
+
+  def update
+    client = Client.find(params[:id])
+    if client.update(client_params)
+      redirect_to clients_path, notice: "Cliente actualizado correctamente"
+    else
+      redirect_to clients_path, inertia: { errors: client.errors }
+    end
+  end
+
   private
 
   def client_json(client)
@@ -53,5 +71,9 @@ class ClientsController < ApplicationController
                     .limit(1)
                     .count
     result.keys.first
+  end
+
+  def client_params
+    params.require(:client).permit(:name, :phone, :vip)
   end
 end

@@ -1,3 +1,4 @@
+import ClientFormModal from '@/components/ClientFormModal'
 import Sidebar from '@/components/Sidebar'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
@@ -36,6 +37,8 @@ function userInitial(name: string): string {
 }
 
 export default function Index({ clients, stats, filters }: ClientsProps) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [editingClient, setEditingClient] = useState<Client | null>(null)
   const [selectedClientId, setSelectedClientId] = useState<number | null>(
     () => clients[0]?.id ?? null,
   )
@@ -68,6 +71,10 @@ export default function Index({ clients, stats, filters }: ClientsProps) {
           <div className="flex items-center gap-3">
             <button
               type="button"
+              onClick={() => {
+                setEditingClient(null)
+                setModalOpen(true)
+              }}
               className="flex items-center gap-2 rounded-lg bg-pink-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-pink-600"
             >
               <Plus className="h-4 w-4" />
@@ -270,6 +277,10 @@ export default function Index({ clients, stats, filters }: ClientsProps) {
                   </button>
                   <button
                     type="button"
+                    onClick={() => {
+                      setEditingClient(selectedClient)
+                      setModalOpen(true)
+                    }}
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
                   >
                     Editar perfil
@@ -280,6 +291,12 @@ export default function Index({ clients, stats, filters }: ClientsProps) {
           )}
         </div>
       </main>
+
+      <ClientFormModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        client={editingClient}
+      />
     </div>
   )
 }
