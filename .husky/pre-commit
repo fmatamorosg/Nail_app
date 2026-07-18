@@ -1,0 +1,2 @@
+bundle exec rubocop
+npx eslint app/javascript --ext .ts,.tsx
