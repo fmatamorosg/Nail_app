@@ -1,6 +1,8 @@
+import ServiceFormModal from '@/components/ServiceFormModal'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import { formatCurrency } from '@/lib/format-currency'
+import { router } from '@inertiajs/react'
 import {
   Bell,
   CheckCircle,
@@ -12,6 +14,7 @@ import {
   Star,
   Trash2,
 } from 'lucide-react'
+import { useState } from 'react'
 
 interface Service {
   id: number
@@ -34,6 +37,9 @@ interface ServicesProps {
 }
 
 export default function Index({ services, stats }: ServicesProps) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [editingService, setEditingService] = useState<Service | null>(null)
+
   const statCards = [
     {
       label: 'Total de servicios',
@@ -80,6 +86,10 @@ export default function Index({ services, stats }: ServicesProps) {
           <div className="flex items-center gap-3">
             <button
               type="button"
+              onClick={() => {
+                setEditingService(null)
+                setModalOpen(true)
+              }}
               className="flex items-center gap-2 rounded-lg bg-pink-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-pink-600"
             >
               <Plus className="h-4 w-4" />
@@ -114,12 +124,25 @@ export default function Index({ services, stats }: ServicesProps) {
                 <div className="absolute right-4 top-4 flex items-center gap-2">
                   <button
                     type="button"
+                    onClick={() => {
+                      setEditingService(service)
+                      setModalOpen(true)
+                    }}
                     className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
                   >
                     <Pencil className="h-4 w-4" />
                   </button>
                   <button
                     type="button"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          `¿Eliminar el servicio "${service.name}"?`,
+                        )
+                      ) {
+                        router.delete(`/services/${service.id}`)
+                      }
+                    }}
                     className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500"
                   >
                     <Trash2 className="h-4 w-4" />
@@ -164,6 +187,12 @@ export default function Index({ services, stats }: ServicesProps) {
           </div>
         )}
       </main>
+
+      <ServiceFormModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        service={editingService}
+      />
     </div>
   )
 }
