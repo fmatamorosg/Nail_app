@@ -4,6 +4,7 @@ import {
   Calendar,
   Home,
   MessageSquare,
+  Scissors,
   Settings,
   Users,
 } from 'lucide-react'
@@ -13,6 +14,7 @@ type NavLabel =
   | 'Inicio'
   | 'Citas'
   | 'Clientes'
+  | 'Servicios'
   | 'Estadísticas'
   | 'Mensajes'
   | 'Configuración'
@@ -26,6 +28,7 @@ const navItems: { label: NavLabel; icon: LucideIcon; href: string }[] = [
   { label: 'Inicio', icon: Home, href: '/' },
   { label: 'Citas', icon: Calendar, href: '/appointments' },
   { label: 'Clientes', icon: Users, href: '/clients' },
+  { label: 'Servicios', icon: Scissors, href: '/services' },
   { label: 'Estadísticas', icon: BarChart3, href: '#' },
   { label: 'Mensajes', icon: MessageSquare, href: '#' },
   { label: 'Configuración', icon: Settings, href: '#' },

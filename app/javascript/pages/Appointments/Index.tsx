@@ -1,4 +1,5 @@
 import Sidebar from '@/components/Sidebar'
+import StatCard from '@/components/StatCard'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { Link, router } from '@inertiajs/react'
 import {
@@ -154,21 +155,8 @@ export default function Index({
         </header>
 
         <div className="mb-8 grid grid-cols-4 gap-6">
-          {statCards.map(({ label, value, icon: Icon, iconBg, iconColor }) => (
-            <div
-              key={label}
-              className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-slate-500">{label}</p>
-                  <p className="mt-2 text-2xl font-bold text-slate-900">{value}</p>
-                </div>
-                <div className={`rounded-lg p-3 ${iconBg}`}>
-                  <Icon className={`h-6 w-6 ${iconColor}`} />
-                </div>
-              </div>
-            </div>
+          {statCards.map((card) => (
+            <StatCard key={card.label} {...card} />
           ))}
         </div>
 

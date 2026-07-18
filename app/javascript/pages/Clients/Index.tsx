@@ -1,6 +1,7 @@
 import Sidebar from '@/components/Sidebar'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
+import { type ClientSummary } from '@/types/client'
 import { router } from '@inertiajs/react'
 import { Bell, Phone, Plus, Search } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
@@ -12,14 +13,9 @@ interface AppointmentHistoryItem {
   status: AppointmentStatus
 }
 
-interface Client {
-  id: number
-  name: string
+interface Client extends ClientSummary {
   phone: string
   vip: boolean
-  last_visit: string
-  visit_count: number
-  total_spent: number
   favorite_service: string | null
   appointment_history: AppointmentHistoryItem[]
 }
