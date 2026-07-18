@@ -62,7 +62,7 @@ appointments_today.each do |data|
 end
 
 # Citas completadas en semanas anteriores, para que "Clientes recientes" tenga historial
-[7, 14, 21].each_with_index do |days_ago, i|
+[ 7, 14, 21 ].each_with_index do |days_ago, i|
   Appointment.find_or_create_by!(
     client: clients[i],
     service: services[i % services.size],
