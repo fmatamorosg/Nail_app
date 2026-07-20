@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get "statistics", to: "statistics#index"
 
+  get "messages", to: "messages#index"
+
   get "settings", to: "settings#index"
   patch "settings/business", to: "settings#update_business"
   patch "settings/password", to: "settings#update_password"

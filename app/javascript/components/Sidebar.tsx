@@ -34,7 +34,7 @@ const navItems: { label: NavLabel; icon: LucideIcon; href: string }[] = [
   { label: 'Clientes', icon: Users, href: '/clients' },
   { label: 'Servicios', icon: Scissors, href: '/services' },
   { label: 'Estadísticas', icon: BarChart3, href: '/statistics' },
-  { label: 'Mensajes', icon: MessageSquare, href: '#' },
+  { label: 'Mensajes', icon: MessageSquare, href: '/messages' },
   { label: 'Configuración', icon: Settings, href: '/settings' },
 ]
 
