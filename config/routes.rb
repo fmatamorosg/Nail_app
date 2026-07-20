@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 
   get "notifications/pending", to: "notifications#pending"
 
+  get "statistics", to: "statistics#index"
+
   get "up" => "rails/health#show", as: :rails_health_check
 end
