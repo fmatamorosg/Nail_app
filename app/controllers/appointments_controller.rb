@@ -24,6 +24,9 @@ class AppointmentsController < ApplicationController
       appointments: appointments.map do |appt|
         {
           id: appt.id,
+          client_id: appt.client_id,
+          service_id: appt.service_id,
+          scheduled_at: appt.scheduled_at.iso8601,
           client_name: appt.client.name,
           date: appt.scheduled_at.strftime("%d %b %Y"),
           time: appt.scheduled_at.strftime("%H:%M"),
@@ -47,25 +50,39 @@ class AppointmentsController < ApplicationController
         page: pagy.page,
         pages: pagy.pages,
         count: pagy.count
-      }
+      },
+      clients: Client.order(:name).select(:id, :name).map { |c| { id: c.id, name: c.name } },
+      services: Service.order(:name).select(:id, :name, :duration_minutes, :price).map { |s| { id: s.id, name: s.name, duration_minutes: s.duration_minutes, price: s.price.to_f } }
     }, as: :json
   end
 
-  def show
-  end
-
-  def new
-  end
-
   def create
-  end
-
-  def edit
+    appointment = Appointment.new(appointment_params)
+    if appointment.save
+      redirect_to appointments_path, notice: "Cita creada correctamente"
+    else
+      redirect_to appointments_path, inertia: { errors: appointment.errors }
+    end
   end
 
   def update
+    appointment = Appointment.find(params[:id])
+    if appointment.update(appointment_params)
+      redirect_to appointments_path, notice: "Cita actualizada correctamente"
+    else
+      redirect_to appointments_path, inertia: { errors: appointment.errors }
+    end
   end
 
   def destroy
+    appointment = Appointment.find(params[:id])
+    appointment.destroy
+    redirect_to appointments_path, notice: "Cita eliminada correctamente"
+  end
+
+  private
+
+  def appointment_params
+    params.require(:appointment).permit(:client_id, :service_id, :scheduled_at, :status)
   end
 end

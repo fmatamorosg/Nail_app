@@ -1,3 +1,4 @@
+import AppointmentFormModal from '@/components/AppointmentFormModal'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
@@ -7,18 +8,35 @@ import {
   Calendar,
   CheckCircle,
   Clock,
+  Pencil,
   Plus,
   Search,
+  Trash2,
 } from 'lucide-react'
-import type { FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 
 interface Appointment {
   id: number
+  client_id: number
+  service_id: number
+  scheduled_at: string
   client_name: string
   date: string
   time: string
   service_name: string
   status: AppointmentStatus
+}
+
+interface ClientOption {
+  id: number
+  name: string
+}
+
+interface ServiceOption {
+  id: number
+  name: string
+  duration_minutes: number
+  price: number
 }
 
 interface AppointmentsProps {
@@ -40,6 +58,8 @@ interface AppointmentsProps {
     pages: number
     count: number
   }
+  clients: ClientOption[]
+  services: ServiceOption[]
 }
 
 const statusPills = [
@@ -83,7 +103,13 @@ export default function Index({
   stats,
   filters,
   pagination,
+  clients,
+  services,
 }: AppointmentsProps) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const [editingAppointment, setEditingAppointment] =
+    useState<Appointment | null>(null)
+
   const statCards = [
     {
       label: 'Total esta semana',
@@ -140,6 +166,10 @@ export default function Index({
           <div className="flex items-center gap-3">
             <button
               type="button"
+              onClick={() => {
+                setEditingAppointment(null)
+                setModalOpen(true)
+              }}
               className="flex items-center gap-2 rounded-lg bg-pink-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-pink-600"
             >
               <Plus className="h-4 w-4" />
@@ -206,6 +236,7 @@ export default function Index({
                   <th className="px-6 py-3">Hora</th>
                   <th className="px-6 py-3">Servicio</th>
                   <th className="px-6 py-3">Estado</th>
+                  <th className="px-6 py-3">Acciones</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -229,6 +260,35 @@ export default function Index({
                       >
                         {statusLabels[appointment.status]}
                       </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditingAppointment(appointment)
+                            setModalOpen(true)
+                          }}
+                          className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                `¿Eliminar la cita de ${appointment.client_name}?`,
+                              )
+                            ) {
+                              router.delete(`/appointments/${appointment.id}`)
+                            }
+                          }}
+                          className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -279,6 +339,14 @@ export default function Index({
           </div>
         </div>
       </main>
+
+      <AppointmentFormModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        clients={clients}
+        services={services}
+        appointment={editingAppointment}
+      />
     </div>
   )
 }
