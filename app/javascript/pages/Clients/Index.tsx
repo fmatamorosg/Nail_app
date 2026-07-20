@@ -1,5 +1,6 @@
 import AppointmentFormModal from '@/components/AppointmentFormModal'
 import ClientFormModal from '@/components/ClientFormModal'
+import ConfirmDialog from '@/components/ConfirmDialog'
 import Sidebar from '@/components/Sidebar'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
@@ -49,6 +50,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
   const [modalOpen, setModalOpen] = useState(false)
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false)
   const [cannotDeleteModalOpen, setCannotDeleteModalOpen] = useState(false)
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
   const [editingClient, setEditingClient] = useState<Client | null>(null)
   const [selectedClientId, setSelectedClientId] = useState<number | null>(
     () => clients[0]?.id ?? null,
@@ -305,13 +307,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                       setCannotDeleteModalOpen(true)
                       return
                     }
-                    if (
-                      window.confirm(
-                        `¿Eliminar a ${selectedClient.name}? Esta acción no se puede deshacer y se perderá su historial.`,
-                      )
-                    ) {
-                      router.delete(`/clients/${selectedClient.id}`)
-                    }
+                    setDeleteConfirmOpen(true)
                   }}
                   className="mt-2 w-full rounded-lg bg-transparent px-4 py-2 text-xs font-medium text-red-600 transition-colors hover:bg-red-50"
                 >
@@ -377,6 +373,18 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
           </div>
         </div>
       )}
+      <ConfirmDialog
+        isOpen={deleteConfirmOpen}
+        onClose={() => setDeleteConfirmOpen(false)}
+        onConfirm={() => {
+          if (selectedClient) {
+            router.delete(`/clients/${selectedClient.id}`)
+          }
+        }}
+        title="Eliminar cliente"
+        message={`¿Eliminar a ${selectedClient?.name}? Esta acción no se puede deshacer y se perderá su historial.`}
+        confirmLabel="Eliminar"
+      />
     </div>
   )
 }

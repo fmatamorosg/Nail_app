@@ -1,3 +1,4 @@
+import ConfirmDialog from '@/components/ConfirmDialog'
 import ServiceFormModal from '@/components/ServiceFormModal'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
@@ -38,6 +39,8 @@ interface ServicesProps {
 
 export default function Index({ services, stats }: ServicesProps) {
   const [modalOpen, setModalOpen] = useState(false)
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
+  const [serviceToDelete, setServiceToDelete] = useState<Service | null>(null)
   const [editingService, setEditingService] = useState<Service | null>(null)
 
   const statCards = [
@@ -135,13 +138,8 @@ export default function Index({ services, stats }: ServicesProps) {
                   <button
                     type="button"
                     onClick={() => {
-                      if (
-                        window.confirm(
-                          `¿Eliminar el servicio "${service.name}"?`,
-                        )
-                      ) {
-                        router.delete(`/services/${service.id}`)
-                      }
+                      setServiceToDelete(service)
+                      setDeleteConfirmOpen(true)
                     }}
                     className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500"
                   >
@@ -192,6 +190,18 @@ export default function Index({ services, stats }: ServicesProps) {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         service={editingService}
+      />
+      <ConfirmDialog
+        isOpen={deleteConfirmOpen}
+        onClose={() => setDeleteConfirmOpen(false)}
+        onConfirm={() => {
+          if (serviceToDelete) {
+            router.delete(`/services/${serviceToDelete.id}`)
+          }
+        }}
+        title="Eliminar servicio"
+        message={`¿Eliminar el servicio "${serviceToDelete?.name}"? Esta acción no se puede deshacer.`}
+        confirmLabel="Eliminar"
       />
     </div>
   )
