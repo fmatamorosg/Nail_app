@@ -6,9 +6,9 @@ import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appo
 import { type ClientSummary } from '@/types/client'
 import {
   Calendar,
-  Clock,
   DollarSign,
   UserPlus,
+  XCircle,
 } from 'lucide-react'
 
 interface Appointment {
@@ -32,7 +32,7 @@ interface DashboardProps {
     appointments_today: number
     revenue_month: number
     new_clients_month: number
-    pending_confirmations: number
+    cancelled_this_month: number
   }
   today_appointments: Appointment[]
   recent_clients: ClientSummary[]
@@ -70,11 +70,11 @@ export default function Index({
       iconColor: 'text-violet-600 dark:text-violet-400',
     },
     {
-      label: 'Confirmaciones pendientes',
-      value: stats.pending_confirmations.toString(),
-      icon: Clock,
-      iconBg: 'bg-amber-100 dark:bg-amber-900/40',
-      iconColor: 'text-amber-600 dark:text-amber-400',
+      label: 'Citas canceladas',
+      value: stats.cancelled_this_month.toString(),
+      icon: XCircle,
+      iconBg: 'bg-red-100 dark:bg-red-900/40',
+      iconColor: 'text-red-600 dark:text-red-400',
     },
   ]
 

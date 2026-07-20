@@ -37,7 +37,7 @@ class AppointmentsController < ApplicationController
       stats: {
         total_week: Appointment.where(scheduled_at: Date.current.beginning_of_week..Date.current.end_of_week).count,
         confirmed: Appointment.where(status: "confirmed").count,
-        pending: Appointment.where(status: "pending").count,
+        cancelled: Appointment.where(status: "cancelled").count,
         completed: Appointment.where(status: "completed").count
       },
       filters: {

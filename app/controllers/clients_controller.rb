@@ -60,6 +60,7 @@ class ClientsController < ApplicationController
       id: client.id,
       name: client.name,
       phone: client.phone,
+      instagram_handle: client.instagram_handle,
       vip: client.vip || false,
       last_visit: client.appointments.maximum(:scheduled_at)&.strftime("%d %b %Y") || "Sin visitas",
       visit_count: completed.count,
@@ -86,6 +87,6 @@ class ClientsController < ApplicationController
   end
 
   def client_params
-    params.require(:client).permit(:name, :phone, :vip)
+    params.require(:client).permit(:name, :phone, :instagram_handle, :vip)
   end
 end

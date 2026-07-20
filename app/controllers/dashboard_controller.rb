@@ -17,7 +17,10 @@ class DashboardController < ApplicationController
       appointments_today: Appointment.today.count,
       revenue_month: Appointment.completed.this_month.joins(:service).sum("services.price"),
       new_clients_month: Client.where(created_at: Date.current.beginning_of_month..Date.current.end_of_month).count,
-      pending_confirmations: Appointment.pending.count
+      cancelled_this_month: Appointment.where(
+        status: "cancelled",
+        scheduled_at: Date.current.beginning_of_month..Date.current.end_of_month
+      ).count
     }
   end
 
@@ -39,6 +42,7 @@ class DashboardController < ApplicationController
       {
         id: client.id,
         name: client.name,
+        instagram_handle: client.instagram_handle,
         last_visit: client.appointments.maximum(:scheduled_at)&.strftime("%d/%m/%Y") || "Sin visitas",
         total_spent: completed.joins(:service).sum("services.price"),
         visit_count: completed.count

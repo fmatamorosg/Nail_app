@@ -4,6 +4,7 @@ import ConfirmDialog from '@/components/ConfirmDialog'
 import NotificationBell from '@/components/NotificationBell'
 import Sidebar from '@/components/Sidebar'
 import { formatCurrency } from '@/lib/format-currency'
+import { formatPhone } from '@/lib/format-phone'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
 import { useModalAccessibility } from '@/lib/useModalAccessibility'
@@ -46,6 +47,12 @@ interface ClientsProps {
 
 function userInitial(name: string): string {
   return name.trim().charAt(0).toUpperCase()
+}
+
+function formatInstagramDisplay(handle: string | null | undefined): string | null {
+  if (!handle?.trim()) return null
+  const trimmed = handle.trim()
+  return trimmed.startsWith('@') ? trimmed : `@${trimmed}`
 }
 
 export default function Index({ clients, stats, filters, services }: ClientsProps) {
@@ -139,6 +146,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                 <ul className="divide-y divide-slate-100 dark:divide-slate-700">
                   {clients.map((client) => {
                     const isSelected = selectedClient?.id === client.id
+                    const instagramLabel = formatInstagramDisplay(client.instagram_handle)
 
                     return (
                       <li key={client.id}>
@@ -160,6 +168,11 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                               <span className="font-medium text-slate-900 dark:text-slate-100">
                                 {client.name}
                               </span>
+                              {instagramLabel && (
+                                <span className="text-xs text-slate-400 dark:text-slate-500">
+                                  {instagramLabel}
+                                </span>
+                              )}
                               {client.vip && (
                                 <span className="rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-900/50 dark:text-violet-200">
                                   Miembro VIP
@@ -168,7 +181,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                             </div>
                             <div className="mt-1 flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                               <Phone className="h-3.5 w-3.5" />
-                              {client.phone}
+                              {formatPhone(client.phone)}
                             </div>
                           </div>
 
@@ -209,8 +222,13 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                   </div>
                   <div className="mt-1 flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                     <Phone className="h-3.5 w-3.5" />
-                    {selectedClient.phone}
+                    {formatPhone(selectedClient.phone)}
                   </div>
+                  {formatInstagramDisplay(selectedClient.instagram_handle) && (
+                    <p className="mt-1 text-sm text-slate-400 dark:text-slate-500">
+                      {formatInstagramDisplay(selectedClient.instagram_handle)}
+                    </p>
+                  )}
                 </div>
 
                 <div className="mb-6 grid grid-cols-3 gap-3 border-y border-slate-100 py-4 dark:border-slate-700">

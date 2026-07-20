@@ -36,7 +36,6 @@ interface AppointmentFormModalProps {
 }
 
 const statusOptions: AppointmentStatus[] = [
-  'pending',
   'confirmed',
   'completed',
   'cancelled',
@@ -72,7 +71,7 @@ export default function AppointmentFormModal({
     client_id: '',
     service_id: '',
     scheduled_at: '',
-    status: 'pending' as AppointmentStatus,
+    status: 'confirmed' as AppointmentStatus,
   })
 
   useEffect(() => {
@@ -91,7 +90,7 @@ export default function AppointmentFormModal({
           initialClientId != null ? String(initialClientId) : '',
         service_id: '',
         scheduled_at: '',
-        status: 'pending',
+        status: 'confirmed',
       })
     }
     form.clearErrors()

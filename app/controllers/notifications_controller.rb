@@ -1,12 +1,15 @@
 class NotificationsController < ApplicationController
   def pending
+    today_start = Date.current.beginning_of_day
+    today_end = Date.current.end_of_day
+
     appointments = Appointment.includes(:client, :service)
-                              .where(status: "pending")
+                              .where(status: "confirmed", scheduled_at: today_start..today_end)
                               .order(scheduled_at: :asc)
                               .limit(10)
 
     render json: {
-      count: Appointment.where(status: "pending").count,
+      count: Appointment.where(status: "confirmed", scheduled_at: today_start..today_end).count,
       appointments: appointments.map do |appt|
         {
           id: appt.id,

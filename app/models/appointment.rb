@@ -2,7 +2,9 @@ class Appointment < ApplicationRecord
   belongs_to :client
   belongs_to :service
 
-  enum :status, { pending: "pending", confirmed: "confirmed", completed: "completed", cancelled: "cancelled" }
+  enum :status, { confirmed: "confirmed", completed: "completed", cancelled: "cancelled" }
+
+  before_validation :assign_default_status, on: :create
 
   validate :no_overlapping_appointments
 
@@ -11,6 +13,10 @@ class Appointment < ApplicationRecord
   scope :this_week, -> { where(scheduled_at: Date.current.beginning_of_week..Date.current.end_of_week) }
 
   private
+
+  def assign_default_status
+    self.status = "confirmed" if status.blank?
+  end
 
   def no_overlapping_appointments
     return unless scheduled_at.present? && service.present?

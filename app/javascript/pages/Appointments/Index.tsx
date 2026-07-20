@@ -45,7 +45,7 @@ interface AppointmentsProps {
   stats: {
     total_week: number
     confirmed: number
-    pending: number
+    cancelled: number
     completed: number
   }
   filters: {
@@ -66,7 +66,7 @@ interface AppointmentsProps {
 const statusPills = [
   { label: 'Todos', value: 'all' },
   { label: 'Confirmada', value: 'confirmed' },
-  { label: 'Pendiente', value: 'pending' },
+  { label: 'Cancelada', value: 'cancelled' },
   { label: 'Completada', value: 'completed' },
 ] as const
 
@@ -138,11 +138,11 @@ export default function Index({
       iconColor: 'text-emerald-600 dark:text-emerald-400',
     },
     {
-      label: 'Pendientes',
-      value: stats.pending.toString(),
+      label: 'Canceladas',
+      value: stats.cancelled.toString(),
       icon: Clock,
-      iconBg: 'bg-amber-100 dark:bg-amber-900/40',
-      iconColor: 'text-amber-600 dark:text-amber-400',
+      iconBg: 'bg-slate-100 dark:bg-slate-700/40',
+      iconColor: 'text-slate-600 dark:text-slate-400',
     },
     {
       label: 'Completadas',

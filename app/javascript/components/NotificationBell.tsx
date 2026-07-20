@@ -82,11 +82,11 @@ export default function NotificationBell() {
       {dropdownOpen && (
         <div className="absolute right-0 z-50 mt-2 w-80 rounded-xl border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-800">
           <div className="border-b border-slate-200 p-4 font-semibold text-slate-900 dark:border-slate-700 dark:text-slate-100">
-            Citas pendientes
+            Citas de hoy
           </div>
           {appointments.length === 0 ? (
             <p className="p-4 text-center text-sm text-slate-500 dark:text-slate-400">
-              No tienes citas pendientes por confirmar
+              No tienes más citas confirmadas para hoy
             </p>
           ) : (
             <ul className="max-h-80 overflow-y-auto">

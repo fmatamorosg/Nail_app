@@ -6,6 +6,7 @@ interface Client {
   id: number
   name: string
   phone: string
+  instagram_handle: string | null
   vip: boolean
 }
 
@@ -32,6 +33,7 @@ export default function ClientFormModal({
   const form = useForm({
     name: '',
     phone: '',
+    instagram_handle: '',
     vip: false,
   })
 
@@ -42,12 +44,14 @@ export default function ClientFormModal({
       form.setData({
         name: client.name,
         phone: client.phone,
+        instagram_handle: client.instagram_handle ?? '',
         vip: client.vip,
       })
     } else {
       form.setData({
         name: '',
         phone: '',
+        instagram_handle: '',
         vip: false,
       })
     }
@@ -129,6 +133,28 @@ export default function ClientFormModal({
             {errorMessage(form.errors.phone) && (
               <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.phone)}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor="client-instagram"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
+            >
+              Instagram (opcional)
+            </label>
+            <input
+              id="client-instagram"
+              type="text"
+              placeholder="@usuario"
+              value={form.data.instagram_handle}
+              onChange={(e) => form.setData('instagram_handle', e.target.value)}
+              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
+            />
+            {errorMessage(form.errors.instagram_handle) && (
+              <p role="alert" className="mt-1 text-sm text-red-600">
+                {errorMessage(form.errors.instagram_handle)}
               </p>
             )}
           </div>
