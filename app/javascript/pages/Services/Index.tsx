@@ -3,6 +3,7 @@ import NotificationBell from '@/components/NotificationBell'
 import ServiceFormModal from '@/components/ServiceFormModal'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
+import Toast from '@/components/Toast'
 import { formatCurrency } from '@/lib/format-currency'
 import { router } from '@inertiajs/react'
 import {
@@ -200,6 +201,7 @@ export default function Index({ services, stats }: ServicesProps) {
         message={`¿Eliminar el servicio "${serviceToDelete?.name}"? Esta acción no se puede deshacer.`}
         confirmLabel="Eliminar"
       />
+      <Toast />
     </div>
   )
 }

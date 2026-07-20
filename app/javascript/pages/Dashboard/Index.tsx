@@ -1,6 +1,7 @@
 import NotificationBell from '@/components/NotificationBell'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
+import Toast from '@/components/Toast'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
@@ -219,6 +220,7 @@ export default function Index({
           )}
         </div>
       </main>
+      <Toast />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import ConfirmDialog from '@/components/ConfirmDialog'
 import NotificationBell from '@/components/NotificationBell'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
+import Toast from '@/components/Toast'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { Link, router } from '@inertiajs/react'
 import {
@@ -363,6 +364,7 @@ export default function Index({
         message={`¿Eliminar la cita de ${appointmentToDelete?.client_name}? Esta acción no se puede deshacer.`}
         confirmLabel="Eliminar"
       />
+      <Toast />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import ClientFormModal from '@/components/ClientFormModal'
 import ConfirmDialog from '@/components/ConfirmDialog'
 import NotificationBell from '@/components/NotificationBell'
 import Sidebar from '@/components/Sidebar'
+import Toast from '@/components/Toast'
 import { formatCurrency } from '@/lib/format-currency'
 import { formatPhone } from '@/lib/format-phone'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
@@ -420,6 +421,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
         message={`¿Eliminar a ${selectedClient?.name}? Esta acción no se puede deshacer y se perderá su historial.`}
         confirmLabel="Eliminar"
       />
+      <Toast />
     </div>
   )
 }
