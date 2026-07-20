@@ -14,6 +14,7 @@ class Appointment < ApplicationRecord
 
   def no_overlapping_appointments
     return unless scheduled_at.present? && service.present?
+    return unless new_record? || scheduled_at_changed?
 
     new_start = scheduled_at
     new_end = scheduled_at + service.duration_minutes.minutes
