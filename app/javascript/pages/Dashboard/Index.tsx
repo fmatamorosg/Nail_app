@@ -1,10 +1,10 @@
+import NotificationBell from '@/components/NotificationBell'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
 import {
-  Bell,
   Calendar,
   Clock,
   DollarSign,
@@ -91,18 +91,7 @@ export default function Index({
             <p className="mt-1 text-slate-500 dark:text-slate-400">{today_date}</p>
           </div>
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              aria-label="Notificaciones"
-              className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
-            >
-              <Bell className="h-5 w-5" />
-              {stats.pending_confirmations > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-pink-500 text-[10px] font-bold text-white">
-                  {stats.pending_confirmations}
-                </span>
-              )}
-            </button>
+            <NotificationBell />
           </div>
         </header>
 

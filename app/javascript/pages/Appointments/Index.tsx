@@ -1,11 +1,11 @@
 import AppointmentFormModal from '@/components/AppointmentFormModal'
 import ConfirmDialog from '@/components/ConfirmDialog'
+import NotificationBell from '@/components/NotificationBell'
 import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { Link, router } from '@inertiajs/react'
 import {
-  Bell,
   Calendar,
   CheckCircle,
   Clock,
@@ -107,12 +107,20 @@ export default function Index({
   clients,
   services,
 }: AppointmentsProps) {
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(() => {
+    const params = new URLSearchParams(window.location.search)
+    return Boolean(params.get('edit'))
+  })
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
   const [appointmentToDelete, setAppointmentToDelete] =
     useState<Appointment | null>(null)
   const [editingAppointment, setEditingAppointment] =
-    useState<Appointment | null>(null)
+    useState<Appointment | null>(() => {
+      const params = new URLSearchParams(window.location.search)
+      const editId = params.get('edit')
+      if (!editId) return null
+      return appointments.find((a) => a.id === Number(editId)) ?? null
+    })
 
   const statCards = [
     {
@@ -179,13 +187,7 @@ export default function Index({
               <Plus className="h-4 w-4" />
               Nueva cita
             </button>
-            <button
-              type="button"
-              aria-label="Notificaciones"
-              className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
-            >
-              <Bell className="h-5 w-5" />
-            </button>
+            <NotificationBell />
           </div>
         </header>
 

@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :services
 
+  get "notifications/pending", to: "notifications#pending"
+
   get "up" => "rails/health#show", as: :rails_health_check
 end
