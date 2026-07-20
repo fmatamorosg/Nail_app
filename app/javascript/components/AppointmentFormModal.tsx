@@ -54,7 +54,7 @@ function toDatetimeLocalValue(isoString: string): string {
 }
 
 const selectClassName =
-  'mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500'
+  'mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100'
 
 export default function AppointmentFormModal({
   isOpen,
@@ -124,9 +124,9 @@ export default function AppointmentFormModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl"
+        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl dark:bg-slate-800"
       >
-        <h2 id={titleId} className="text-xl font-bold text-slate-900">
+        <h2 id={titleId} className="text-xl font-bold text-slate-900 dark:text-slate-100">
           {isEditing ? 'Editar cita' : 'Nueva cita'}
         </h2>
 
@@ -134,7 +134,7 @@ export default function AppointmentFormModal({
           <div>
             <label
               htmlFor="appointment-client"
-              className="block text-sm font-medium text-slate-700"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Cliente
             </label>
@@ -163,7 +163,7 @@ export default function AppointmentFormModal({
           <div>
             <label
               htmlFor="appointment-service"
-              className="block text-sm font-medium text-slate-700"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Servicio
             </label>
@@ -191,7 +191,7 @@ export default function AppointmentFormModal({
           <div>
             <label
               htmlFor="appointment-scheduled-at"
-              className="block text-sm font-medium text-slate-700"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Fecha y hora
             </label>
@@ -201,7 +201,7 @@ export default function AppointmentFormModal({
               value={form.data.scheduled_at}
               onChange={(e) => form.setData('scheduled_at', e.target.value)}
               required
-              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
             />
             {errorMessage(form.errors.scheduled_at) && (
               <p role="alert" className="mt-1 text-sm text-red-600">
@@ -213,7 +213,7 @@ export default function AppointmentFormModal({
           <div>
             <label
               htmlFor="appointment-status"
-              className="block text-sm font-medium text-slate-700"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Estado
             </label>
@@ -243,7 +243,7 @@ export default function AppointmentFormModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+              className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               Cancelar
             </button>

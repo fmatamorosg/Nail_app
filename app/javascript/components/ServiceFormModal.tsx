@@ -89,9 +89,9 @@ export default function ServiceFormModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl"
+        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl dark:bg-slate-800"
       >
-        <h2 id={titleId} className="text-xl font-bold text-slate-900">
+        <h2 id={titleId} className="text-xl font-bold text-slate-900 dark:text-slate-100">
           {isEditing ? 'Editar servicio' : 'Nuevo servicio'}
         </h2>
 
@@ -99,7 +99,7 @@ export default function ServiceFormModal({
           <div>
             <label
               htmlFor="service-name"
-              className="block text-sm font-medium text-slate-700"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Nombre
             </label>
@@ -110,7 +110,7 @@ export default function ServiceFormModal({
               value={form.data.name}
               onChange={(e) => form.setData('name', e.target.value)}
               required
-              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
             />
             {errorMessage(form.errors.name) && (
               <p role="alert" className="mt-1 text-sm text-red-600">
@@ -122,7 +122,7 @@ export default function ServiceFormModal({
           <div>
             <label
               htmlFor="service-description"
-              className="block text-sm font-medium text-slate-700"
+              className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Descripción
             </label>
@@ -131,7 +131,7 @@ export default function ServiceFormModal({
               value={form.data.description}
               onChange={(e) => form.setData('description', e.target.value)}
               rows={3}
-              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+              className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
             />
             {errorMessage(form.errors.description) && (
               <p role="alert" className="mt-1 text-sm text-red-600">
@@ -144,7 +144,7 @@ export default function ServiceFormModal({
             <div>
               <label
                 htmlFor="service-price"
-                className="block text-sm font-medium text-slate-700"
+                className="block text-sm font-medium text-slate-700 dark:text-slate-300"
               >
                 Precio
               </label>
@@ -156,7 +156,7 @@ export default function ServiceFormModal({
                 value={form.data.price}
                 onChange={(e) => form.setData('price', e.target.value)}
                 required
-                className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+                className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
               />
               {errorMessage(form.errors.price) && (
                 <p role="alert" className="mt-1 text-sm text-red-600">
@@ -168,7 +168,7 @@ export default function ServiceFormModal({
             <div>
               <label
                 htmlFor="service-duration"
-                className="block text-sm font-medium text-slate-700"
+                className="block text-sm font-medium text-slate-700 dark:text-slate-300"
               >
                 Duración (min)
               </label>
@@ -181,7 +181,7 @@ export default function ServiceFormModal({
                   form.setData('duration_minutes', e.target.value)
                 }
                 required
-                className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+                className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100"
               />
               {errorMessage(form.errors.duration_minutes) && (
                 <p role="alert" className="mt-1 text-sm text-red-600">
@@ -201,7 +201,7 @@ export default function ServiceFormModal({
             />
             <label
               htmlFor="service-active"
-              className="text-sm font-medium text-slate-700"
+              className="text-sm font-medium text-slate-700 dark:text-slate-300"
             >
               Activo
             </label>
@@ -216,7 +216,7 @@ export default function ServiceFormModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+              className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               Cancelar
             </button>

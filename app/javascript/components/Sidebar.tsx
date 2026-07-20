@@ -1,11 +1,14 @@
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { Link } from '@inertiajs/react'
 import {
   BarChart3,
   Calendar,
   Home,
   MessageSquare,
+  Moon,
   Scissors,
   Settings,
+  Sun,
   Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -39,6 +42,8 @@ function userInitial(name: string): string {
 }
 
 export default function Sidebar({ active, userName }: SidebarProps) {
+  const { isDark, toggleDarkMode } = useDarkMode()
+
   return (
     <aside className="fixed inset-y-0 left-0 flex w-64 flex-col bg-slate-900 text-white">
       <div className="border-b border-slate-800 px-6 py-8">
@@ -71,6 +76,19 @@ export default function Sidebar({ active, userName }: SidebarProps) {
       </nav>
 
       <div className="border-t border-slate-800 px-4 py-6">
+        <button
+          type="button"
+          onClick={toggleDarkMode}
+          aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+          className="mb-4 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
+        >
+          {isDark ? (
+            <Sun className="h-5 w-5 shrink-0" aria-hidden="true" />
+          ) : (
+            <Moon className="h-5 w-5 shrink-0" aria-hidden="true" />
+          )}
+          {isDark ? 'Modo claro' : 'Modo oscuro'}
+        </button>
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-pink-500 text-sm font-semibold">
             {userInitial(userName)}

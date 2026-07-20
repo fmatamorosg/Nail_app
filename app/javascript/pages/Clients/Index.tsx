@@ -79,14 +79,14 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
   }
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
       <Sidebar active="Clientes" userName="Yeri" />
 
       <main className="ml-64 flex-1 p-8">
         <header className="mb-8 flex items-start justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-slate-900">Clientes</h1>
-            <p className="mt-1 text-slate-500">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Clientes</h1>
+            <p className="mt-1 text-slate-500 dark:text-slate-400">
               Directorio y historial de clientes
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
             <button
               type="button"
               aria-label="Notificaciones"
-              className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50"
+              className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700"
             >
               <Bell className="h-5 w-5" />
             </button>
@@ -121,27 +121,27 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                 name="search"
                 defaultValue={filters.search}
                 placeholder="Buscar por nombre o teléfono..."
-                className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
+                className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-900 placeholder:text-slate-400 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-500"
               />
             </form>
 
-            <div className="mb-4 flex items-center gap-4 text-sm text-slate-600">
+            <div className="mb-4 flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
               <span>
-                Total: <strong className="text-slate-900">{stats.total}</strong>{' '}
+                Total: <strong className="text-slate-900 dark:text-slate-100">{stats.total}</strong>{' '}
                 clientes
               </span>
               <span>
-                VIP: <strong className="text-slate-900">{stats.vip_count}</strong>
+                VIP: <strong className="text-slate-900 dark:text-slate-100">{stats.vip_count}</strong>
               </span>
             </div>
 
             {clients.length === 0 ? (
-              <div className="rounded-xl border border-slate-200 bg-white px-6 py-12 text-center shadow-sm">
-                <p className="text-slate-500">No hay clientes registrados</p>
+              <div className="rounded-xl border border-slate-200 bg-white px-6 py-12 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
+                <p className="text-slate-500 dark:text-slate-400">No hay clientes registrados</p>
               </div>
             ) : (
-              <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
-                <ul className="divide-y divide-slate-100">
+              <div className="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+                <ul className="divide-y divide-slate-100 dark:divide-slate-700">
                   {clients.map((client) => {
                     const isSelected = selectedClient?.id === client.id
 
@@ -152,8 +152,8 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                           onClick={() => setSelectedClientId(client.id)}
                           className={`flex w-full items-center gap-4 px-6 py-4 text-left transition-colors ${
                             isSelected
-                              ? 'bg-violet-50'
-                              : 'hover:bg-slate-50'
+                              ? 'bg-violet-50 dark:bg-violet-900/30'
+                              : 'hover:bg-slate-50 dark:hover:bg-slate-700/50'
                           }`}
                         >
                           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-500 text-sm font-semibold text-white">
@@ -162,27 +162,27 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
 
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center gap-2">
-                              <span className="font-medium text-slate-900">
+                              <span className="font-medium text-slate-900 dark:text-slate-100">
                                 {client.name}
                               </span>
                               {client.vip && (
-                                <span className="rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700">
+                                <span className="rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-900/50 dark:text-violet-200">
                                   Miembro VIP
                                 </span>
                               )}
                             </div>
-                            <div className="mt-1 flex items-center gap-1.5 text-sm text-slate-500">
+                            <div className="mt-1 flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                               <Phone className="h-3.5 w-3.5" />
                               {client.phone}
                             </div>
                           </div>
 
                           <div className="shrink-0 text-right text-sm">
-                            <p className="text-slate-500">Última visita</p>
-                            <p className="font-medium text-slate-900">
+                            <p className="text-slate-500 dark:text-slate-400">Última visita</p>
+                            <p className="font-medium text-slate-900 dark:text-slate-100">
                               {client.last_visit}
                             </p>
-                            <p className="text-slate-500">
+                            <p className="text-slate-500 dark:text-slate-400">
                               {client.visit_count} visitas
                             </p>
                           </div>
@@ -197,75 +197,75 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
 
           {selectedClient && (
             <div className="col-span-1">
-              <div className="sticky top-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="sticky top-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                 <div className="mb-6 flex flex-col items-center text-center">
                   <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-pink-500 text-xl font-semibold text-white">
                     {userInitial(selectedClient.name)}
                   </div>
                   <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-semibold text-slate-900">
+                    <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                       {selectedClient.name}
                     </h2>
                     {selectedClient.vip && (
-                      <span className="rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700">
+                      <span className="rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-900/50 dark:text-violet-200">
                         Miembro VIP
                       </span>
                     )}
                   </div>
-                  <div className="mt-1 flex items-center gap-1.5 text-sm text-slate-500">
+                  <div className="mt-1 flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                     <Phone className="h-3.5 w-3.5" />
                     {selectedClient.phone}
                   </div>
                 </div>
 
-                <div className="mb-6 grid grid-cols-3 gap-3 border-y border-slate-100 py-4">
+                <div className="mb-6 grid grid-cols-3 gap-3 border-y border-slate-100 py-4 dark:border-slate-700">
                   <div className="text-center">
-                    <p className="text-lg font-bold text-slate-900">
+                    <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
                       {selectedClient.visit_count}
                     </p>
-                    <p className="text-xs text-slate-500">Visitas</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Visitas</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-lg font-bold text-slate-900">
+                    <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
                       {formatCurrency(selectedClient.total_spent)}
                     </p>
-                    <p className="text-xs text-slate-500">Total</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Total</p>
                   </div>
                   <div className="text-center">
                     <p
-                      className="truncate text-lg font-bold text-slate-900"
+                      className="truncate text-lg font-bold text-slate-900 dark:text-slate-100"
                       title={selectedClient.favorite_service ?? undefined}
                     >
                       {selectedClient.favorite_service ?? '—'}
                     </p>
-                    <p className="text-xs text-slate-500">Favorito</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Favorito</p>
                   </div>
                 </div>
 
                 <div className="mb-6">
                   <div className="mb-3 flex items-center gap-2">
-                    <h3 className="text-sm font-semibold text-slate-900">
+                    <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                       Historial de citas
                     </h3>
-                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
+                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-700 dark:text-slate-300">
                       {selectedClient.appointment_history.length}
                     </span>
                   </div>
 
                   {selectedClient.appointment_history.length === 0 ? (
-                    <p className="text-sm text-slate-500">Sin citas registradas</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">Sin citas registradas</p>
                   ) : (
                     <ul className="space-y-3">
                       {selectedClient.appointment_history.map((appointment) => (
                         <li
                           key={appointment.id}
-                          className="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-3 py-2"
+                          className="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-3 py-2 dark:bg-slate-700/50"
                         >
                           <div className="min-w-0">
-                            <p className="truncate text-sm font-medium text-slate-900">
+                            <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">
                               {appointment.service_name}
                             </p>
-                            <p className="text-xs text-slate-500">
+                            <p className="text-xs text-slate-500 dark:text-slate-400">
                               {appointment.date}
                             </p>
                           </div>
@@ -281,11 +281,11 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                 </div>
 
                 {selectedClient.favorite_service && (
-                  <div className="mb-6 rounded-lg bg-violet-50 px-4 py-3">
-                    <p className="text-xs font-medium text-violet-600">
+                  <div className="mb-6 rounded-lg bg-violet-50 px-4 py-3 dark:bg-violet-900/30">
+                    <p className="text-xs font-medium text-violet-600 dark:text-violet-300">
                       Servicio favorito
                     </p>
-                    <p className="text-sm font-medium text-slate-900">
+                    <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
                       {selectedClient.favorite_service}
                     </p>
                   </div>
@@ -305,7 +305,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                       setEditingClient(selectedClient)
                       setModalOpen(true)
                     }}
-                    className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                   >
                     Editar perfil
                   </button>
@@ -319,7 +319,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                     }
                     setDeleteConfirmOpen(true)
                   }}
-                  className="mt-2 w-full rounded-lg bg-transparent px-4 py-2 text-xs font-medium text-red-600 transition-colors hover:bg-red-50"
+                  className="mt-2 w-full rounded-lg bg-transparent px-4 py-2 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30"
                 >
                   Eliminar cliente
                 </button>
@@ -350,22 +350,22 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
             role="dialog"
             aria-modal="true"
             aria-labelledby={cannotDeleteTitleId}
-            className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl"
+            className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl dark:bg-slate-800"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/40">
                 <AlertTriangle
-                  className="h-6 w-6 text-amber-600"
+                  className="h-6 w-6 text-amber-600 dark:text-amber-400"
                   aria-hidden="true"
                 />
               </div>
               <h2
                 id={cannotDeleteTitleId}
-                className="text-xl font-bold text-slate-900"
+                className="text-xl font-bold text-slate-900 dark:text-slate-100"
               >
                 No se puede eliminar este cliente
               </h2>
-              <p className="mt-3 text-sm text-slate-600">
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
                 {selectedClient.name} tiene citas registradas. Elimina o
                 reasigna sus citas primero para poder eliminar su perfil.
               </p>
@@ -375,7 +375,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                 ref={cannotDeleteCloseRef}
                 type="button"
                 onClick={() => setCannotDeleteModalOpen(false)}
-                className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
               >
                 Cerrar
               </button>
