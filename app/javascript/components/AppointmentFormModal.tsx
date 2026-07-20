@@ -31,6 +31,7 @@ interface AppointmentFormModalProps {
   clients: ClientOption[]
   services: ServiceOption[]
   appointment: AppointmentFormData | null
+  initialClientId?: number
 }
 
 const statusOptions: AppointmentStatus[] = [
@@ -60,6 +61,7 @@ export default function AppointmentFormModal({
   clients,
   services,
   appointment,
+  initialClientId,
 }: AppointmentFormModalProps) {
   const isEditing = appointment !== null
 
@@ -82,14 +84,15 @@ export default function AppointmentFormModal({
       })
     } else {
       form.setData({
-        client_id: '',
+        client_id:
+          initialClientId != null ? String(initialClientId) : '',
         service_id: '',
         scheduled_at: '',
         status: 'pending',
       })
     }
     form.clearErrors()
-  }, [isOpen, appointment])
+  }, [isOpen, appointment, initialClientId])
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()

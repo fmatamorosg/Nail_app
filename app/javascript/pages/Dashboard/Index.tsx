@@ -8,7 +8,6 @@ import {
   Calendar,
   Clock,
   DollarSign,
-  Plus,
   UserPlus,
 } from 'lucide-react'
 
@@ -92,13 +91,6 @@ export default function Index({
             <p className="mt-1 text-slate-500">{today_date}</p>
           </div>
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              className="flex items-center gap-2 rounded-lg bg-pink-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-pink-600"
-            >
-              <Plus className="h-4 w-4" />
-              Nueva cita
-            </button>
             <button
               type="button"
               className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50"

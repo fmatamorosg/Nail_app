@@ -17,7 +17,8 @@ class ClientsController < ApplicationController
       },
       filters: {
         search: params[:search] || ""
-      }
+      },
+      services: Service.order(:name).select(:id, :name, :duration_minutes, :price).map { |s| { id: s.id, name: s.name, duration_minutes: s.duration_minutes, price: s.price.to_f } }
     }, as: :json
   end
 
@@ -41,8 +42,13 @@ class ClientsController < ApplicationController
 
   def destroy
     client = Client.find(params[:id])
-    client.destroy
-    redirect_to clients_path, notice: "Cliente eliminado correctamente"
+
+    if client.appointments.exists?
+      redirect_to clients_path, alert: "No se puede eliminar a #{client.name} porque tiene citas registradas. Elimina o reasigna sus citas primero."
+    else
+      client.destroy
+      redirect_to clients_path, notice: "Cliente eliminado correctamente"
+    end
   end
 
   private

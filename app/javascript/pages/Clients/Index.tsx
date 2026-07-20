@@ -1,10 +1,11 @@
+import AppointmentFormModal from '@/components/AppointmentFormModal'
 import ClientFormModal from '@/components/ClientFormModal'
 import Sidebar from '@/components/Sidebar'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
 import { router } from '@inertiajs/react'
-import { Bell, Phone, Plus, Search } from 'lucide-react'
+import { Bell, AlertTriangle, Phone, Plus, Search } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 
 interface AppointmentHistoryItem {
@@ -21,6 +22,13 @@ interface Client extends ClientSummary {
   appointment_history: AppointmentHistoryItem[]
 }
 
+interface ServiceOption {
+  id: number
+  name: string
+  duration_minutes: number
+  price: number
+}
+
 interface ClientsProps {
   clients: Client[]
   stats: {
@@ -30,14 +38,17 @@ interface ClientsProps {
   filters: {
     search: string
   }
+  services: ServiceOption[]
 }
 
 function userInitial(name: string): string {
   return name.trim().charAt(0).toUpperCase()
 }
 
-export default function Index({ clients, stats, filters }: ClientsProps) {
+export default function Index({ clients, stats, filters, services }: ClientsProps) {
   const [modalOpen, setModalOpen] = useState(false)
+  const [appointmentModalOpen, setAppointmentModalOpen] = useState(false)
+  const [cannotDeleteModalOpen, setCannotDeleteModalOpen] = useState(false)
   const [editingClient, setEditingClient] = useState<Client | null>(null)
   const [selectedClientId, setSelectedClientId] = useState<number | null>(
     () => clients[0]?.id ?? null,
@@ -271,6 +282,7 @@ export default function Index({ clients, stats, filters }: ClientsProps) {
                 <div className="space-y-3">
                   <button
                     type="button"
+                    onClick={() => setAppointmentModalOpen(true)}
                     className="w-full rounded-lg bg-pink-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-pink-600"
                   >
                     Agendar nueva cita
@@ -289,6 +301,10 @@ export default function Index({ clients, stats, filters }: ClientsProps) {
                 <button
                   type="button"
                   onClick={() => {
+                    if (selectedClient.appointment_history.length > 0) {
+                      setCannotDeleteModalOpen(true)
+                      return
+                    }
                     if (
                       window.confirm(
                         `¿Eliminar a ${selectedClient.name}? Esta acción no se puede deshacer y se perderá su historial.`,
@@ -312,6 +328,55 @@ export default function Index({ clients, stats, filters }: ClientsProps) {
         onClose={() => setModalOpen(false)}
         client={editingClient}
       />
+      {selectedClient && (
+        <AppointmentFormModal
+          isOpen={appointmentModalOpen}
+          onClose={() => setAppointmentModalOpen(false)}
+          clients={clients}
+          services={services}
+          appointment={null}
+          initialClientId={selectedClient.id}
+        />
+      )}
+      {cannotDeleteModalOpen && selectedClient && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
+                <AlertTriangle className="h-6 w-6 text-amber-600" />
+              </div>
+              <h2 className="text-xl font-bold text-slate-900">
+                No se puede eliminar este cliente
+              </h2>
+              <p className="mt-3 text-sm text-slate-600">
+                {selectedClient.name} tiene citas registradas. Elimina o
+                reasigna sus citas primero para poder eliminar su perfil.
+              </p>
+            </div>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setCannotDeleteModalOpen(false)}
+                className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+              >
+                Cerrar
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setCannotDeleteModalOpen(false)
+                  router.visit(
+                    `/appointments?search=${encodeURIComponent(selectedClient.name)}`,
+                  )
+                }}
+                className="rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-amber-600"
+              >
+                Ver citas de este cliente
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
