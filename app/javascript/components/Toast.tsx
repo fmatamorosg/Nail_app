@@ -6,6 +6,7 @@ interface FlashProps {
   flash?: {
     notice?: string | null
     alert?: string | null
+    id?: string | null
   }
 }
 
@@ -60,11 +61,11 @@ export default function Toast() {
   const alert = props.flash?.alert
 
   if (notice) {
-    return <ToastContent key={`notice-${notice}`} message={notice} variant="success" />
+    return <ToastContent key={`notice-${props.flash?.id}`} message={notice} variant="success" />
   }
 
   if (alert) {
-    return <ToastContent key={`alert-${alert}`} message={alert} variant="error" />
+    return <ToastContent key={`alert-${props.flash?.id}`} message={alert} variant="error" />
   }
 
   return null

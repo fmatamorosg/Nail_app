@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
     {
       flash: {
         notice: flash[:notice],
-        alert: flash[:alert]
+        alert: flash[:alert],
+        id: (flash[:notice] || flash[:alert]) ? SecureRandom.hex(4) : nil
       }
     }
   end
