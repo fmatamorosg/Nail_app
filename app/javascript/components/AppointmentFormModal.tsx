@@ -2,8 +2,9 @@ import {
   type AppointmentStatus,
   statusLabels,
 } from '@/types/appointment'
+import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { useForm } from '@inertiajs/react'
-import { useEffect, type FormEvent } from 'react'
+import { useEffect, useId, useRef, type FormEvent } from 'react'
 
 interface ClientOption {
   id: number
@@ -64,6 +65,8 @@ export default function AppointmentFormModal({
   initialClientId,
 }: AppointmentFormModalProps) {
   const isEditing = appointment !== null
+  const titleId = useId()
+  const firstFieldRef = useRef<HTMLSelectElement>(null)
 
   const form = useForm({
     client_id: '',
@@ -94,6 +97,8 @@ export default function AppointmentFormModal({
     form.clearErrors()
   }, [isOpen, appointment, initialClientId])
 
+  useModalAccessibility(isOpen, onClose, firstFieldRef)
+
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
@@ -115,8 +120,13 @@ export default function AppointmentFormModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
-        <h2 className="text-xl font-bold text-slate-900">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl"
+      >
+        <h2 id={titleId} className="text-xl font-bold text-slate-900">
           {isEditing ? 'Editar cita' : 'Nueva cita'}
         </h2>
 
@@ -129,6 +139,7 @@ export default function AppointmentFormModal({
               Cliente
             </label>
             <select
+              ref={firstFieldRef}
               id="appointment-client"
               value={form.data.client_id}
               onChange={(e) => form.setData('client_id', e.target.value)}
@@ -143,7 +154,7 @@ export default function AppointmentFormModal({
               ))}
             </select>
             {errorMessage(form.errors.client_id) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.client_id)}
               </p>
             )}
@@ -171,7 +182,7 @@ export default function AppointmentFormModal({
               ))}
             </select>
             {errorMessage(form.errors.service_id) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.service_id)}
               </p>
             )}
@@ -193,7 +204,7 @@ export default function AppointmentFormModal({
               className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
             />
             {errorMessage(form.errors.scheduled_at) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.scheduled_at)}
               </p>
             )}
@@ -222,7 +233,7 @@ export default function AppointmentFormModal({
               ))}
             </select>
             {errorMessage(form.errors.status) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.status)}
               </p>
             )}

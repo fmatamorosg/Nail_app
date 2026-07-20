@@ -5,9 +5,10 @@ import Sidebar from '@/components/Sidebar'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
+import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { router } from '@inertiajs/react'
 import { Bell, AlertTriangle, Phone, Plus, Search } from 'lucide-react'
-import { useState, type FormEvent } from 'react'
+import { useId, useRef, useState, type FormEvent } from 'react'
 
 interface AppointmentHistoryItem {
   id: number
@@ -59,6 +60,14 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
   const selectedClient =
     clients.find((client) => client.id === selectedClientId) ?? clients[0] ?? null
 
+  const cannotDeleteTitleId = useId()
+  const cannotDeleteCloseRef = useRef<HTMLButtonElement>(null)
+  useModalAccessibility(
+    cannotDeleteModalOpen,
+    () => setCannotDeleteModalOpen(false),
+    cannotDeleteCloseRef,
+  )
+
   function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -95,6 +104,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
             </button>
             <button
               type="button"
+              aria-label="Notificaciones"
               className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50"
             >
               <Bell className="h-5 w-5" />
@@ -336,12 +346,23 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
       )}
       {cannotDeleteModalOpen && selectedClient && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={cannotDeleteTitleId}
+            className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl"
+          >
             <div className="flex flex-col items-center text-center">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
-                <AlertTriangle className="h-6 w-6 text-amber-600" />
+                <AlertTriangle
+                  className="h-6 w-6 text-amber-600"
+                  aria-hidden="true"
+                />
               </div>
-              <h2 className="text-xl font-bold text-slate-900">
+              <h2
+                id={cannotDeleteTitleId}
+                className="text-xl font-bold text-slate-900"
+              >
                 No se puede eliminar este cliente
               </h2>
               <p className="mt-3 text-sm text-slate-600">
@@ -351,6 +372,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
             </div>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
               <button
+                ref={cannotDeleteCloseRef}
                 type="button"
                 onClick={() => setCannotDeleteModalOpen(false)}
                 className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"

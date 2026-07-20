@@ -11893,3 +11893,1223 @@ Processing by ServicesController#index as HTML
 Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 1.5ms (6 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/clients" for ::1 at 2026-07-20 08:53:00 -0600
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:10:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 28 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 28 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 28 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 28 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 28 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 21 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 23 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 23 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 23 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 23 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 23 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 20) /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.3ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 26 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 26 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 26 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 26 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 26 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 25 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 25 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 25 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 25 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 25 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 23 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 27 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 27 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 27 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 27 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 27 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 19 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 22 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 22 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 22 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 22 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 22 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (20, 19) /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 24 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 24 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 24 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 24 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 24 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (22, 21) /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mClient Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "clients" /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:15:in 'ClientsController#index'
+  [1m[36mClient Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "clients" WHERE "clients"."vip" = TRUE /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:16:in 'ClientsController#index'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:21:in 'Enumerable#map'
+Completed 200 OK in 65ms (Views: 0.4ms | ActiveRecord: 8.8ms (47 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:53:01 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 23, 22, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 20, 19, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 1.9ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 08:53:15 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "23", "service_id" => "24", "scheduled_at" => "2026-07-24T08:53", "status" => "confirmed"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 23 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Create (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("client_id", "service_id", "scheduled_at", "status", "notes", "created_at", "updated_at") VALUES (23, 24, '2026-07-24 08:53:00', 'confirmed', NULL, '2026-07-20 08:53:15.614036', '2026-07-20 08:53:15.614036') RETURNING "id" /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:62:in 'AppointmentsController#create'
+Completed 302 Found in 18ms (ActiveRecord: 5.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:53:15 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 23, 22, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 20, 19, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/clients" for ::1 at 2026-07-20 08:53:17 -0600
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:10:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 28 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 28 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 28 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 28 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 28 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 21 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 23 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 23 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 23 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 23 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 23 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (24, 21, 20) /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 26 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 26 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 26 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 26 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 26 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 25 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 25 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 25 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 25 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 25 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 23 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 27 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 27 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 27 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 27 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 27 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 19 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 22 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 22 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 22 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 22 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 22 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (20, 19) /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 24 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:64:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 24 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:65:in 'ClientsController#client_json'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 24 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:66:in 'ClientsController#client_json'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) AS "count_all", "services"."name" AS "services_name" FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 24 GROUP BY "services"."name" ORDER BY COUNT(appointments.id) DESC LIMIT 1 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:84:in 'ClientsController#favorite_service_for'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."client_id" = 24 ORDER BY "appointments"."scheduled_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (22, 21) /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:68:in 'Enumerable#map'
+  [1m[36mClient Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "clients" /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:15:in 'ClientsController#index'
+  [1m[36mClient Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "clients" WHERE "clients"."vip" = TRUE /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:16:in 'ClientsController#index'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='clients'*/[0m
+  ↳ app/controllers/clients_controller.rb:21:in 'Enumerable#map'
+Completed 200 OK in 65ms (Views: 0.3ms | ActiveRecord: 8.6ms (47 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:53:18 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 23, 22, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 20, 19, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/appointments/39" for ::1 at 2026-07-20 08:53:27 -0600
+Processing by AppointmentsController#destroy as HTML
+  Parameters: {"id" => "39", "appointment" => {}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."id" = 39 LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:78:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mAppointment Destroy (1.3ms)[0m  [1m[31mDELETE FROM "appointments" WHERE "appointments"."id" = 39 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:80:in 'AppointmentsController#destroy'
+Completed 302 Found in 10ms (ActiveRecord: 2.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:53:27 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 20, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 1.7ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:53:33 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 20, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 20ms (Views: 0.3ms | ActiveRecord: 2.0ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 08:53:54 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T08:53", "status" => "pending"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Create (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("client_id", "service_id", "scheduled_at", "status", "notes", "created_at", "updated_at") VALUES (28, 24, '2026-07-20 08:53:00', 'pending', NULL, '2026-07-20 08:53:54.158577', '2026-07-20 08:53:54.158577') RETURNING "id" /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:62:in 'AppointmentsController#create'
+Completed 302 Found in 15ms (ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:53:54 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 20, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 08:54:05 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T08:53", "status" => "confirmed"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.7ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Create (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("client_id", "service_id", "scheduled_at", "status", "notes", "created_at", "updated_at") VALUES (28, 24, '2026-07-20 08:53:00', 'confirmed', NULL, '2026-07-20 08:54:05.731987', '2026-07-20 08:54:05.731987') RETURNING "id" /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:62:in 'AppointmentsController#create'
+Completed 302 Found in 17ms (ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:54:05 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 20, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 24ms (Views: 0.3ms | ActiveRecord: 2.5ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/appointments/45" for ::1 at 2026-07-20 08:54:18 -0600
+Processing by AppointmentsController#destroy as HTML
+  Parameters: {"id" => "45", "appointment" => {}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."id" = 45 LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:78:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mAppointment Destroy (1.2ms)[0m  [1m[31mDELETE FROM "appointments" WHERE "appointments"."id" = 45 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:80:in 'AppointmentsController#destroy'
+Completed 302 Found in 10ms (ActiveRecord: 2.0ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:54:18 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 20, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 20ms (Views: 0.3ms | ActiveRecord: 1.9ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 08:54:32 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "23", "service_id" => "24", "scheduled_at" => "2026-07-20T08:54", "status" => "completed"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.6ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 23 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Create (0.3ms)[0m  [1m[32mINSERT INTO "appointments" ("client_id", "service_id", "scheduled_at", "status", "notes", "created_at", "updated_at") VALUES (23, 24, '2026-07-20 08:54:00', 'completed', NULL, '2026-07-20 08:54:32.329302', '2026-07-20 08:54:32.329302') RETURNING "id" /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:62:in 'AppointmentsController#create'
+Completed 302 Found in 14ms (ActiveRecord: 2.7ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:54:32 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 20, 22, 23, 24) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PATCH "/appointments/48" for ::1 at 2026-07-20 08:54:45 -0600
+Processing by AppointmentsController#update as HTML
+  Parameters: {"appointment" => {"client_id" => "23", "service_id" => "24", "scheduled_at" => "2026-07-18T08:54", "status" => "completed"}, "id" => "48"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='update',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."id" = 48 LIMIT 1 /*action='update',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:69:in 'AppointmentsController#update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='update',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:70:in 'AppointmentsController#update'
+  [1m[36mAppointment Update (1.5ms)[0m  [1m[33mUPDATE "appointments" SET "scheduled_at" = '2026-07-18 08:54:00', "updated_at" = '2026-07-20 08:54:45.141287' WHERE "appointments"."id" = 48 /*action='update',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:70:in 'AppointmentsController#update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*action='update',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:70:in 'AppointmentsController#update'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:71:in 'AppointmentsController#update'
+Completed 302 Found in 11ms (ActiveRecord: 2.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 08:54:45 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.7ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/appointments/46" for ::1 at 2026-07-20 09:01:05 -0600
+Processing by AppointmentsController#destroy as HTML
+  Parameters: {"id" => "46", "appointment" => {}}
+  [1m[36mUser Load (69.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Load (1.7ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."id" = 46 LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:78:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mAppointment Destroy (2.6ms)[0m  [1m[31mDELETE FROM "appointments" WHERE "appointments"."id" = 46 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:80:in 'AppointmentsController#destroy'
+Completed 302 Found in 93ms (ActiveRecord: 79.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:05 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (1.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (1.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 35ms (Views: 0.7ms | ActiveRecord: 4.6ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/appointments/47" for ::1 at 2026-07-20 09:01:07 -0600
+Processing by AppointmentsController#destroy as HTML
+  Parameters: {"id" => "47", "appointment" => {}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."id" = 47 LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:78:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mAppointment Destroy (1.4ms)[0m  [1m[31mDELETE FROM "appointments" WHERE "appointments"."id" = 47 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:80:in 'AppointmentsController#destroy'
+Completed 302 Found in 10ms (ActiveRecord: 2.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:08 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:01:20 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:01", "status" => "pending"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (4.0ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 10:32:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:01:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mAppointment Create (0.5ms)[0m  [1m[32mINSERT INTO "appointments" ("client_id", "service_id", "scheduled_at", "status", "notes", "created_at", "updated_at") VALUES (28, 24, '2026-07-20 09:01:00', 'pending', NULL, '2026-07-20 09:01:20.852647', '2026-07-20 09:01:20.852647') RETURNING "id" /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:62:in 'AppointmentsController#create'
+Completed 302 Found in 21ms (ActiveRecord: 7.1ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:20 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.7ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:01:34 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:01", "status" => "pending"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (2.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 10:32:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:01:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:64:in 'AppointmentsController#create'
+Completed 302 Found in 14ms (ActiveRecord: 3.1ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:34 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:01:35 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:01", "status" => "pending"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (2.0ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 10:32:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:01:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:64:in 'AppointmentsController#create'
+Completed 302 Found in 14ms (ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:35 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 20ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:01:42 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:05", "status" => "pending"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.7ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 10:36:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:05:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:64:in 'AppointmentsController#create'
+Completed 302 Found in 14ms (ActiveRecord: 2.7ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:43 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.7ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:01:43 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:05", "status" => "pending"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 10:36:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:05:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:64:in 'AppointmentsController#create'
+Completed 302 Found in 14ms (ActiveRecord: 2.7ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:43 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:01:48 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:53", "status" => "pending"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.7ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 11:24:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:53:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:64:in 'AppointmentsController#create'
+Completed 302 Found in 14ms (ActiveRecord: 2.7ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:48 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.1ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 1.7ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:01:49 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:53", "status" => "pending"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (1.9ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 11:24:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:53:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:64:in 'AppointmentsController#create'
+Completed 302 Found in 15ms (ActiveRecord: 2.8ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:01:49 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.4ms | ActiveRecord: 1.9ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2026-07-20 09:06:51 -0600
+Processing by AppointmentsController#create as HTML
+  Parameters: {"appointment" => {"client_id" => "28", "service_id" => "24", "scheduled_at" => "2026-07-20T09:53", "status" => "pending"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" = 28 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" = 24 LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+  [1m[36mAppointment Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."id" IS NOT NULL AND "appointments"."status" != 'cancelled' AND (appointments.scheduled_at < '2026-07-20 11:24:00' AND (appointments.scheduled_at + (services.duration_minutes * interval '1 minute')) > '2026-07-20 09:53:00') LIMIT 1 /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/models/appointment.rb:30:in 'Appointment#no_overlapping_appointments'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:61:in 'AppointmentsController#create'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:64:in 'AppointmentsController#create'
+Completed 302 Found in 43ms (ActiveRecord: 13.2ms (4 queries, 0 cached) | GC: 15.6ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:06:51 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.4ms | ActiveRecord: 1.9ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/appointments/49" for ::1 at 2026-07-20 09:07:09 -0600
+Processing by AppointmentsController#destroy as HTML
+  Parameters: {"id" => "49", "appointment" => {}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."id" = 49 LIMIT 1 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:78:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mAppointment Destroy (1.5ms)[0m  [1m[31mDELETE FROM "appointments" WHERE "appointments"."id" = 49 /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*action='destroy',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:79:in 'AppointmentsController#destroy'
+Redirected to http://localhost:3000/appointments
+↳ app/controllers/appointments_controller.rb:80:in 'AppointmentsController#destroy'
+Completed 302 Found in 11ms (ActiveRecord: 2.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:07:10 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 19ms (Views: 0.4ms | ActiveRecord: 1.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:13:40 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (58.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.3ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.8ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | GC: 0.0ms)
+Completed 200 OK in 108ms (Views: 24.6ms | ActiveRecord: 67.8ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-07-20 09:13:42 -0600
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20 00:00:00' AND '2026-07-20 23:59:59.999999' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:17:in 'DashboardController#stats'
+  [1m[36mAppointment Sum (0.3ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."status" = 'completed' AND "appointments"."scheduled_at" BETWEEN '2026-07-01' AND '2026-07-31' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:18:in 'DashboardController#stats'
+  [1m[36mClient Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "clients" WHERE "clients"."created_at" BETWEEN '2026-07-01' AND '2026-07-31' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:19:in 'DashboardController#stats'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:20:in 'DashboardController#stats'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20 00:00:00' AND '2026-07-20 23:59:59.999999' ORDER BY "appointments"."scheduled_at" ASC /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:25:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" ORDER BY "clients"."created_at" DESC LIMIT 5 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:37:in 'Enumerable#map'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 28 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 28 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 28 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 27 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 27 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 27 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 26 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 26 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 26 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 25 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 25 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 25 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Maximum (0.2ms)[0m  [1m[34mSELECT MAX("appointments"."scheduled_at") FROM "appointments" WHERE "appointments"."client_id" = 24 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:42:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Sum (0.2ms)[0m  [1m[34mSELECT SUM("services"."price") FROM "appointments" INNER JOIN "services" ON "services"."id" = "appointments"."service_id" WHERE "appointments"."client_id" = 24 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:43:in 'block in DashboardController#recent_clients'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."client_id" = 24 AND "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:44:in 'block in DashboardController#recent_clients'
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT "services".* FROM "services" LEFT OUTER JOIN "appointments" ON "appointments"."service_id" = "services"."id" GROUP BY "services"."id" ORDER BY COUNT(appointments.id) DESC LIMIT 5 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:54:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 21 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 19 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 24 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 22 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."service_id" = 23 /*action='index',application='NailApp',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:58:in 'block in DashboardController#popular_services'
+Completed 200 OK in 40ms (Views: 0.3ms | ActiveRecord: 5.5ms (28 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:13:45 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 1.9ms (11 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2026-07-20 09:13:54 -0600
+Processing by AppointmentsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 4 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='NailApp',controller='appointments'*/[0m
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:21:in 'AppointmentsController#index'
+  [1m[36mAppointment Load (0.2ms)[0m  [1m[34mSELECT "appointments".* FROM "appointments" ORDER BY "appointments"."scheduled_at" ASC LIMIT 12 OFFSET 0 /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients" WHERE "clients"."id" IN (24, 22, 23, 25, 26, 27, 28) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."id" IN (21, 19, 24, 20, 22, 23) /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:24:in 'Enumerable#map'
+  [1m[36mAppointment Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."scheduled_at" BETWEEN '2026-07-20' AND '2026-07-26' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:38:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'confirmed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:39:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'pending' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:40:in 'AppointmentsController#index'
+  [1m[36mAppointment Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "appointments" WHERE "appointments"."status" = 'completed' /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:41:in 'AppointmentsController#index'
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT "clients"."id", "clients"."name" FROM "clients" ORDER BY "clients"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:54:in 'Enumerable#map'
+  [1m[36mService Load (0.1ms)[0m  [1m[34mSELECT "services"."id", "services"."name", "services"."duration_minutes", "services"."price" FROM "services" ORDER BY "services"."name" ASC /*action='index',application='NailApp',controller='appointments'*/[0m
+  ↳ app/controllers/appointments_controller.rb:55:in 'Enumerable#map'
+  Rendering layout layouts/application.html.erb
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/inertia_rails-3.21.1/app/views/inertia.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | GC: 0.0ms)
+Completed 200 OK in 36ms (Views: 13.0ms | ActiveRecord: 2.0ms (11 queries, 0 cached) | GC: 0.0ms)
+
+

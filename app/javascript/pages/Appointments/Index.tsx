@@ -181,6 +181,7 @@ export default function Index({
             </button>
             <button
               type="button"
+              aria-label="Notificaciones"
               className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50"
             >
               <Bell className="h-5 w-5" />
@@ -235,12 +236,12 @@ export default function Index({
             <table className="w-full">
               <thead>
                 <tr className="border-b border-slate-100 text-left text-xs font-medium uppercase tracking-wide text-slate-500">
-                  <th className="px-6 py-3">Cliente</th>
-                  <th className="px-6 py-3">Fecha</th>
-                  <th className="px-6 py-3">Hora</th>
-                  <th className="px-6 py-3">Servicio</th>
-                  <th className="px-6 py-3">Estado</th>
-                  <th className="px-6 py-3">Acciones</th>
+                  <th scope="col" className="px-6 py-3">Cliente</th>
+                  <th scope="col" className="px-6 py-3">Fecha</th>
+                  <th scope="col" className="px-6 py-3">Hora</th>
+                  <th scope="col" className="px-6 py-3">Servicio</th>
+                  <th scope="col" className="px-6 py-3">Estado</th>
+                  <th scope="col" className="px-6 py-3">Acciones</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -269,6 +270,7 @@ export default function Index({
                       <div className="flex items-center gap-2">
                         <button
                           type="button"
+                          aria-label={`Editar cita de ${appointment.client_name}`}
                           onClick={() => {
                             setEditingAppointment(appointment)
                             setModalOpen(true)
@@ -279,6 +281,7 @@ export default function Index({
                         </button>
                         <button
                           type="button"
+                          aria-label={`Eliminar cita de ${appointment.client_name}`}
                           onClick={() => {
                             setAppointmentToDelete(appointment)
                             setDeleteConfirmOpen(true)

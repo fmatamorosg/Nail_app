@@ -1,5 +1,6 @@
+import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { useForm } from '@inertiajs/react'
-import { useEffect, type FormEvent } from 'react'
+import { useEffect, useId, useRef, type FormEvent } from 'react'
 
 interface Service {
   id: number
@@ -27,6 +28,8 @@ export default function ServiceFormModal({
   service,
 }: ServiceFormModalProps) {
   const isEditing = service !== null
+  const titleId = useId()
+  const firstFieldRef = useRef<HTMLInputElement>(null)
 
   const form = useForm({
     name: '',
@@ -59,6 +62,8 @@ export default function ServiceFormModal({
     form.clearErrors()
   }, [isOpen, service])
 
+  useModalAccessibility(isOpen, onClose, firstFieldRef)
+
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
@@ -80,8 +85,13 @@ export default function ServiceFormModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
-        <h2 className="text-xl font-bold text-slate-900">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl"
+      >
+        <h2 id={titleId} className="text-xl font-bold text-slate-900">
           {isEditing ? 'Editar servicio' : 'Nuevo servicio'}
         </h2>
 
@@ -94,6 +104,7 @@ export default function ServiceFormModal({
               Nombre
             </label>
             <input
+              ref={firstFieldRef}
               id="service-name"
               type="text"
               value={form.data.name}
@@ -102,7 +113,7 @@ export default function ServiceFormModal({
               className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
             />
             {errorMessage(form.errors.name) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.name)}
               </p>
             )}
@@ -123,7 +134,7 @@ export default function ServiceFormModal({
               className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
             />
             {errorMessage(form.errors.description) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.description)}
               </p>
             )}
@@ -148,7 +159,7 @@ export default function ServiceFormModal({
                 className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
               />
               {errorMessage(form.errors.price) && (
-                <p className="mt-1 text-sm text-red-600">
+                <p role="alert" className="mt-1 text-sm text-red-600">
                   {errorMessage(form.errors.price)}
                 </p>
               )}
@@ -173,7 +184,7 @@ export default function ServiceFormModal({
                 className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
               />
               {errorMessage(form.errors.duration_minutes) && (
-                <p className="mt-1 text-sm text-red-600">
+                <p role="alert" className="mt-1 text-sm text-red-600">
                   {errorMessage(form.errors.duration_minutes)}
                 </p>
               )}
@@ -195,7 +206,7 @@ export default function ServiceFormModal({
               Activo
             </label>
             {errorMessage(form.errors.active) && (
-              <p className="text-sm text-red-600">
+              <p role="alert" className="text-sm text-red-600">
                 {errorMessage(form.errors.active)}
               </p>
             )}

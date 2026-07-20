@@ -100,6 +100,7 @@ export default function Index({ services, stats }: ServicesProps) {
             </button>
             <button
               type="button"
+              aria-label="Notificaciones"
               className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50"
             >
               <Bell className="h-5 w-5" />
@@ -127,6 +128,7 @@ export default function Index({ services, stats }: ServicesProps) {
                 <div className="absolute right-4 top-4 flex items-center gap-2">
                   <button
                     type="button"
+                    aria-label={`Editar ${service.name}`}
                     onClick={() => {
                       setEditingService(service)
                       setModalOpen(true)
@@ -137,6 +139,7 @@ export default function Index({ services, stats }: ServicesProps) {
                   </button>
                   <button
                     type="button"
+                    aria-label={`Eliminar ${service.name}`}
                     onClick={() => {
                       setServiceToDelete(service)
                       setDeleteConfirmOpen(true)

@@ -1,5 +1,6 @@
+import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { useForm } from '@inertiajs/react'
-import { useEffect, type FormEvent } from 'react'
+import { useEffect, useId, useRef, type FormEvent } from 'react'
 
 interface Client {
   id: number
@@ -25,6 +26,8 @@ export default function ClientFormModal({
   client,
 }: ClientFormModalProps) {
   const isEditing = client !== null
+  const titleId = useId()
+  const firstFieldRef = useRef<HTMLInputElement>(null)
 
   const form = useForm({
     name: '',
@@ -51,6 +54,8 @@ export default function ClientFormModal({
     form.clearErrors()
   }, [isOpen, client])
 
+  useModalAccessibility(isOpen, onClose, firstFieldRef)
+
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
@@ -72,8 +77,13 @@ export default function ClientFormModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl">
-        <h2 className="text-xl font-bold text-slate-900">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl"
+      >
+        <h2 id={titleId} className="text-xl font-bold text-slate-900">
           {isEditing ? 'Editar cliente' : 'Nuevo cliente'}
         </h2>
 
@@ -86,6 +96,7 @@ export default function ClientFormModal({
               Nombre
             </label>
             <input
+              ref={firstFieldRef}
               id="client-name"
               type="text"
               value={form.data.name}
@@ -94,7 +105,7 @@ export default function ClientFormModal({
               className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
             />
             {errorMessage(form.errors.name) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.name)}
               </p>
             )}
@@ -116,7 +127,7 @@ export default function ClientFormModal({
               className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 focus:border-pink-500 focus:outline-none focus:ring-1 focus:ring-pink-500"
             />
             {errorMessage(form.errors.phone) && (
-              <p className="mt-1 text-sm text-red-600">
+              <p role="alert" className="mt-1 text-sm text-red-600">
                 {errorMessage(form.errors.phone)}
               </p>
             )}
@@ -137,7 +148,7 @@ export default function ClientFormModal({
               Cliente VIP
             </label>
             {errorMessage(form.errors.vip) && (
-              <p className="text-sm text-red-600">
+              <p role="alert" className="text-sm text-red-600">
                 {errorMessage(form.errors.vip)}
               </p>
             )}

@@ -93,6 +93,7 @@ export default function Index({
           <div className="flex items-center gap-3">
             <button
               type="button"
+              aria-label="Notificaciones"
               className="relative rounded-lg border border-slate-200 bg-white p-2.5 text-slate-600 transition-colors hover:bg-slate-50"
             >
               <Bell className="h-5 w-5" />
