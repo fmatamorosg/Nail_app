@@ -39,6 +39,12 @@ class ClientsController < ApplicationController
     end
   end
 
+  def destroy
+    client = Client.find(params[:id])
+    client.destroy
+    redirect_to clients_path, notice: "Cliente eliminado correctamente"
+  end
+
   private
 
   def client_json(client)

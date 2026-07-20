@@ -286,6 +286,21 @@ export default function Index({ clients, stats, filters }: ClientsProps) {
                     Editar perfil
                   </button>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        `¿Eliminar a ${selectedClient.name}? Esta acción no se puede deshacer y se perderá su historial.`,
+                      )
+                    ) {
+                      router.delete(`/clients/${selectedClient.id}`)
+                    }
+                  }}
+                  className="mt-2 w-full rounded-lg bg-transparent px-4 py-2 text-xs font-medium text-red-600 transition-colors hover:bg-red-50"
+                >
+                  Eliminar cliente
+                </button>
               </div>
             </div>
           )}
