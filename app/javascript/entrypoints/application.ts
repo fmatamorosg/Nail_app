@@ -1,1 +1,1 @@
-// Entrypoint for non-Inertia pages, currently unused
+import './application.css'

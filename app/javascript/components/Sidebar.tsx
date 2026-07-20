@@ -1,9 +1,10 @@
 import { useDarkMode } from '@/hooks/useDarkMode'
-import { Link } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/react'
 import {
   BarChart3,
   Calendar,
   Home,
+  LogOut,
   MessageSquare,
   Moon,
   Scissors,
@@ -43,6 +44,10 @@ function userInitial(name: string): string {
 
 export default function Sidebar({ active, userName }: SidebarProps) {
   const { isDark, toggleDarkMode } = useDarkMode()
+
+  function handleLogout() {
+    router.delete('/users/sign_out')
+  }
 
   return (
     <aside className="fixed inset-y-0 left-0 flex w-64 flex-col bg-slate-900 text-white">
@@ -90,13 +95,21 @@ export default function Sidebar({ active, userName }: SidebarProps) {
           {isDark ? 'Modo claro' : 'Modo oscuro'}
         </button>
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-pink-500 text-sm font-semibold">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-500 text-sm font-semibold">
             {userInitial(userName)}
           </div>
-          <div>
+          <div className="min-w-0 flex-1">
             <p className="text-sm font-medium">{userName}</p>
             <p className="text-xs text-slate-400">Administrador</p>
           </div>
+          <button
+            type="button"
+            onClick={handleLogout}
+            aria-label="Cerrar sesión"
+            className="shrink-0 rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+          >
+            <LogOut className="h-4 w-4" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </aside>
