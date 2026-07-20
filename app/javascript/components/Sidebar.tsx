@@ -1,5 +1,5 @@
 import { useDarkMode } from '@/hooks/useDarkMode'
-import { Link, router } from '@inertiajs/react'
+import { Link, router, usePage } from '@inertiajs/react'
 import {
   BarChart3,
   Calendar,
@@ -35,7 +35,7 @@ const navItems: { label: NavLabel; icon: LucideIcon; href: string }[] = [
   { label: 'Servicios', icon: Scissors, href: '/services' },
   { label: 'Estadísticas', icon: BarChart3, href: '/statistics' },
   { label: 'Mensajes', icon: MessageSquare, href: '#' },
-  { label: 'Configuración', icon: Settings, href: '#' },
+  { label: 'Configuración', icon: Settings, href: '/settings' },
 ]
 
 function userInitial(name: string): string {
@@ -44,6 +44,8 @@ function userInitial(name: string): string {
 
 export default function Sidebar({ active, userName }: SidebarProps) {
   const { isDark, toggleDarkMode } = useDarkMode()
+  const { props } = usePage<{ business_name?: string | null }>()
+  const businessName = props.business_name || 'Nail Studio'
 
   function handleLogout() {
     router.delete('/users/sign_out')
@@ -57,7 +59,7 @@ export default function Sidebar({ active, userName }: SidebarProps) {
             NS
           </div>
           <div>
-            <p className="font-semibold">Nail Studio</p>
+            <p className="font-semibold">{businessName}</p>
             <p className="text-sm text-slate-400">Panel de control</p>
           </div>
         </div>
