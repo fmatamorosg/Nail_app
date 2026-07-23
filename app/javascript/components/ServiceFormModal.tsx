@@ -1,6 +1,6 @@
 import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { useForm } from '@inertiajs/react'
-import { useEffect, useId, useRef, type FormEvent } from 'react'
+import { useId, useRef, type FormEvent } from 'react'
 
 interface Service {
   id: number
@@ -32,35 +32,12 @@ export default function ServiceFormModal({
   const firstFieldRef = useRef<HTMLInputElement>(null)
 
   const form = useForm({
-    name: '',
-    description: '',
-    price: '',
-    duration_minutes: '',
-    active: true,
+    name: service?.name ?? '',
+    description: service?.description ?? '',
+    price: service ? String(service.price) : '',
+    duration_minutes: service ? String(service.duration_minutes) : '',
+    active: service?.active ?? true,
   })
-
-  useEffect(() => {
-    if (!isOpen) return
-
-    if (service) {
-      form.setData({
-        name: service.name,
-        description: service.description ?? '',
-        price: String(service.price),
-        duration_minutes: String(service.duration_minutes),
-        active: service.active,
-      })
-    } else {
-      form.setData({
-        name: '',
-        description: '',
-        price: '',
-        duration_minutes: '',
-        active: true,
-      })
-    }
-    form.clearErrors()
-  }, [isOpen, service])
 
   useModalAccessibility(isOpen, onClose, firstFieldRef)
 

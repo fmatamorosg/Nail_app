@@ -333,12 +333,14 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
       </Layout>
 
       <ClientFormModal
+        key={editingClient?.id ?? 'new'}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         client={editingClient}
       />
       {selectedClient && (
         <AppointmentFormModal
+          key={`new-for-client-${selectedClient.id}`}
           isOpen={appointmentModalOpen}
           onClose={() => setAppointmentModalOpen(false)}
           clients={clients}

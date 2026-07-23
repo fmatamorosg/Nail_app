@@ -1,7 +1,6 @@
 import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { useForm } from '@inertiajs/react'
-import { useEffect, useId, useRef, type FormEvent } from 'react'
-
+import { useId, useRef, type FormEvent } from 'react'
 interface Client {
   id: number
   name: string
@@ -31,35 +30,13 @@ export default function ClientFormModal({
   const firstFieldRef = useRef<HTMLInputElement>(null)
 
   const form = useForm({
-    name: '',
-    phone: '',
-    instagram_handle: '',
-    vip: false,
+    name: client?.name ?? '',
+    phone: client?.phone ?? '',
+    instagram_handle: client?.instagram_handle ?? '',
+    vip: client?.vip ?? false,
   })
 
-  useEffect(() => {
-    if (!isOpen) return
-
-    if (client) {
-      form.setData({
-        name: client.name,
-        phone: client.phone,
-        instagram_handle: client.instagram_handle ?? '',
-        vip: client.vip,
-      })
-    } else {
-      form.setData({
-        name: '',
-        phone: '',
-        instagram_handle: '',
-        vip: false,
-      })
-    }
-    form.clearErrors()
-  }, [isOpen, client])
-
   useModalAccessibility(isOpen, onClose, firstFieldRef)
-
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
 

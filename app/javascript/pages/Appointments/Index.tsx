@@ -331,6 +331,7 @@ export default function Index({
       </Layout>
 
       <AppointmentFormModal
+        key={editingAppointment?.id ?? 'new'}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         clients={clients}

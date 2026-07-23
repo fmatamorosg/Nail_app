@@ -180,6 +180,7 @@ export default function Index({ services, stats }: ServicesProps) {
       </Layout>
 
       <ServiceFormModal
+        key={editingService?.id ?? 'new'}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         service={editingService}

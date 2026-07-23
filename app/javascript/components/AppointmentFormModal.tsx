@@ -6,7 +6,7 @@ import { type ClientOption } from '@/types/client'
 import { type ServiceOption } from '@/types/service'
 import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { useForm } from '@inertiajs/react'
-import { useEffect, useId, useRef, type FormEvent } from 'react'
+import { useId, useRef, type FormEvent } from 'react'
 
 interface AppointmentFormData {
   id: number
@@ -58,33 +58,15 @@ export default function AppointmentFormModal({
   const firstFieldRef = useRef<HTMLSelectElement>(null)
 
   const form = useForm({
-    client_id: '',
-    service_id: '',
-    scheduled_at: '',
-    status: 'confirmed' as AppointmentStatus,
+    client_id: appointment
+      ? String(appointment.client_id)
+      : initialClientId != null
+        ? String(initialClientId)
+        : '',
+    service_id: appointment ? String(appointment.service_id) : '',
+    scheduled_at: appointment ? toDatetimeLocalValue(appointment.scheduled_at) : '',
+    status: appointment ? appointment.status : ('confirmed' as AppointmentStatus),
   })
-
-  useEffect(() => {
-    if (!isOpen) return
-
-    if (appointment) {
-      form.setData({
-        client_id: String(appointment.client_id),
-        service_id: String(appointment.service_id),
-        scheduled_at: toDatetimeLocalValue(appointment.scheduled_at),
-        status: appointment.status,
-      })
-    } else {
-      form.setData({
-        client_id:
-          initialClientId != null ? String(initialClientId) : '',
-        service_id: '',
-        scheduled_at: '',
-        status: 'confirmed',
-      })
-    }
-    form.clearErrors()
-  }, [isOpen, appointment, initialClientId])
 
   useModalAccessibility(isOpen, onClose, firstFieldRef)
 
