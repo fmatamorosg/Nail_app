@@ -1,5 +1,17 @@
 export type AppointmentStatus = "confirmed" | "completed" | "cancelled"
 
+export interface Appointment {
+  id: number
+  client_id: number
+  service_id: number
+  scheduled_at: string
+  client_name: string
+  date: string
+  time: string
+  service_name: string
+  status: AppointmentStatus
+}
+
 export const statusLabels: Record<AppointmentStatus, string> = {
   confirmed: "Confirmada",
   completed: "Completada",

@@ -1,10 +1,11 @@
 import AppointmentFormModal from '@/components/AppointmentFormModal'
+import AppointmentsTable from '@/components/AppointmentsTable'
 import ConfirmDialog from '@/components/ConfirmDialog'
 import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
 import StatCard from '@/components/StatCard'
 import Toast from '@/components/Toast'
-import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
+import { type Appointment } from '@/types/appointment'
 import { type ClientOption } from '@/types/client'
 import { type ServiceOption } from '@/types/service'
 import { Link, router } from '@inertiajs/react'
@@ -12,24 +13,10 @@ import {
   Calendar,
   CheckCircle,
   Clock,
-  Pencil,
   Plus,
   Search,
-  Trash2,
 } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
-
-interface Appointment {
-  id: number
-  client_id: number
-  service_id: number
-  scheduled_at: string
-  client_name: string
-  date: string
-  time: string
-  service_name: string
-  status: AppointmentStatus
-}
 
 interface AppointmentsProps {
   appointments: Appointment[]
@@ -215,77 +202,17 @@ export default function Index({
           </form>
         </div>
 
-        <div className="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
-          {appointments.length === 0 ? (
-            <p className="px-6 py-8 text-center text-slate-500 dark:text-slate-400">
-              No hay citas que coincidan con los filtros
-            </p>
-          ) : (
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-100 text-left text-xs font-medium uppercase tracking-wide text-slate-500 dark:border-slate-700 dark:text-slate-400">
-                  <th scope="col" className="px-6 py-3">Cliente</th>
-                  <th scope="col" className="px-6 py-3">Fecha</th>
-                  <th scope="col" className="px-6 py-3">Hora</th>
-                  <th scope="col" className="px-6 py-3">Servicio</th>
-                  <th scope="col" className="px-6 py-3">Estado</th>
-                  <th scope="col" className="px-6 py-3">Acciones</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
-                {appointments.map((appointment) => (
-                  <tr key={appointment.id} className="text-sm">
-                    <td className="px-6 py-4 font-medium text-slate-900 dark:text-slate-100">
-                      {appointment.client_name}
-                    </td>
-                    <td className="px-6 py-4 text-slate-700 dark:text-slate-300">
-                      {appointment.date}
-                    </td>
-                    <td className="px-6 py-4 text-slate-700 dark:text-slate-300">
-                      {appointment.time}
-                    </td>
-                    <td className="px-6 py-4 text-slate-700 dark:text-slate-300">
-                      {appointment.service_name}
-                    </td>
-                    <td className="px-6 py-4">
-                      <span
-                        className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${statusStyles[appointment.status]}`}
-                      >
-                        {statusLabels[appointment.status]}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          aria-label={`Editar cita de ${appointment.client_name}`}
-                          onClick={() => {
-                            setEditingAppointment(appointment)
-                            setModalOpen(true)
-                          }}
-                          className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-700 dark:hover:text-slate-200"
-                        >
-                          <Pencil className="h-4 w-4" />
-                        </button>
-                        <button
-                          type="button"
-                          aria-label={`Eliminar cita de ${appointment.client_name}`}
-                          onClick={() => {
-                            setAppointmentToDelete(appointment)
-                            setDeleteConfirmOpen(true)
-                          }}
-                          className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-700"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+        <AppointmentsTable
+          appointments={appointments}
+          onEdit={(appointment) => {
+            setEditingAppointment(appointment)
+            setModalOpen(true)
+          }}
+          onDelete={(appointment) => {
+            setAppointmentToDelete(appointment)
+            setDeleteConfirmOpen(true)
+          }}
+        />
 
         <div className="mt-6 flex items-center justify-between">
           <p className="text-sm text-slate-500 dark:text-slate-400">
