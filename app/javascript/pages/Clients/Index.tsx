@@ -8,6 +8,7 @@ import { formatCurrency } from '@/lib/format-currency'
 import { formatPhone } from '@/lib/format-phone'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
+import { type ServiceOption } from '@/types/service'
 import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { router } from '@inertiajs/react'
 import { AlertTriangle, Phone, Plus, Search } from 'lucide-react'
@@ -25,13 +26,6 @@ interface Client extends ClientSummary {
   vip: boolean
   favorite_service: string | null
   appointment_history: AppointmentHistoryItem[]
-}
-
-interface ServiceOption {
-  id: number
-  name: string
-  duration_minutes: number
-  price: number
 }
 
 interface ClientsProps {

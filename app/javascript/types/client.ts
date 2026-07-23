@@ -6,3 +6,8 @@ export interface ClientSummary {
   total_spent: number
   visit_count: number
 }
+
+export interface ClientOption {
+  id: number
+  name: string
+}

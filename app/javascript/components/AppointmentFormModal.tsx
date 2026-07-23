@@ -2,21 +2,11 @@ import {
   type AppointmentStatus,
   statusLabels,
 } from '@/types/appointment'
+import { type ClientOption } from '@/types/client'
+import { type ServiceOption } from '@/types/service'
 import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { useForm } from '@inertiajs/react'
 import { useEffect, useId, useRef, type FormEvent } from 'react'
-
-interface ClientOption {
-  id: number
-  name: string
-}
-
-interface ServiceOption {
-  id: number
-  name: string
-  duration_minutes: number
-  price: number
-}
 
 interface AppointmentFormData {
   id: number

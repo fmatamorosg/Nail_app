@@ -5,6 +5,8 @@ import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import Toast from '@/components/Toast'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
+import { type ClientOption } from '@/types/client'
+import { type ServiceOption } from '@/types/service'
 import { Link, router } from '@inertiajs/react'
 import {
   Calendar,
@@ -27,18 +29,6 @@ interface Appointment {
   time: string
   service_name: string
   status: AppointmentStatus
-}
-
-interface ClientOption {
-  id: number
-  name: string
-}
-
-interface ServiceOption {
-  id: number
-  name: string
-  duration_minutes: number
-  price: number
 }
 
 interface AppointmentsProps {
