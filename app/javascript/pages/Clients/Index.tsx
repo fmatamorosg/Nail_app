@@ -1,8 +1,8 @@
 import AppointmentFormModal from '@/components/AppointmentFormModal'
 import ClientFormModal from '@/components/ClientFormModal'
 import ConfirmDialog from '@/components/ConfirmDialog'
+import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
-import Sidebar from '@/components/Sidebar'
 import Toast from '@/components/Toast'
 import { formatCurrency } from '@/lib/format-currency'
 import { formatPhone } from '@/lib/format-phone'
@@ -82,18 +82,13 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
   }
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Sidebar active="Clientes" userName="Yeri" />
-
-      <main className="ml-64 flex-1 p-8">
-        <header className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Clientes</h1>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">
-              Directorio y historial de clientes
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
+    <>
+      <Layout
+        active="Clientes"
+        title="Clientes"
+        subtitle="Directorio y historial de clientes"
+        headerActions={
+          <>
             <button
               type="button"
               onClick={() => {
@@ -106,9 +101,9 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
               Nuevo cliente
             </button>
             <NotificationBell />
-          </div>
-        </header>
-
+          </>
+        }
+      >
         <div className="grid grid-cols-3 gap-6">
           <div className="col-span-2">
             <form onSubmit={handleSearchSubmit} className="relative mb-4">
@@ -335,7 +330,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
             </div>
           )}
         </div>
-      </main>
+      </Layout>
 
       <ClientFormModal
         isOpen={modalOpen}
@@ -416,6 +411,6 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
         confirmLabel="Eliminar"
       />
       <Toast />
-    </div>
+    </>
   )
 }

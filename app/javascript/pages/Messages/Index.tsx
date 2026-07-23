@@ -1,5 +1,5 @@
+import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
-import Sidebar from '@/components/Sidebar'
 import {
   Calendar,
   Camera,
@@ -19,23 +19,13 @@ const plannedIntegrations: {
 
 export default function Index() {
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Sidebar active="Mensajes" userName="Yeri" />
-
-      <main className="ml-64 flex-1 p-8">
-        <header className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
-              Mensajes
-            </h1>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">
-              Canales de comunicación con tus clientas
-            </p>
-          </div>
-          <NotificationBell />
-        </header>
-
-        <div className="mx-auto mt-12 max-w-2xl rounded-2xl bg-white p-10 text-center shadow-lg dark:bg-slate-800">
+    <Layout
+      active="Mensajes"
+      title="Mensajes"
+      subtitle="Canales de comunicación con tus clientas"
+      headerActions={<NotificationBell />}
+    >
+      <div className="mx-auto mt-12 max-w-2xl rounded-2xl bg-white p-10 text-center shadow-lg dark:bg-slate-800">
           <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-pink-100 dark:bg-pink-900/30">
             <MessageCircle className="h-16 w-16 text-pink-500" />
           </div>
@@ -67,7 +57,6 @@ export default function Index() {
             ))}
           </div>
         </div>
-      </main>
-    </div>
+    </Layout>
   )
 }

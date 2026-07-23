@@ -1,7 +1,7 @@
 import AppointmentFormModal from '@/components/AppointmentFormModal'
 import ConfirmDialog from '@/components/ConfirmDialog'
+import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
-import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import Toast from '@/components/Toast'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
@@ -155,18 +155,13 @@ export default function Index({
   const isLastPage = pagination.page >= pagination.pages
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Sidebar active="Citas" userName="Yeri" />
-
-      <main className="ml-64 flex-1 p-8">
-        <header className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Citas</h1>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">
-              Gestiona y consulta todas las citas
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
+    <>
+      <Layout
+        active="Citas"
+        title="Citas"
+        subtitle="Gestiona y consulta todas las citas"
+        headerActions={
+          <>
             <button
               type="button"
               onClick={() => {
@@ -179,9 +174,9 @@ export default function Index({
               Nueva cita
             </button>
             <NotificationBell />
-          </div>
-        </header>
-
+          </>
+        }
+      >
         <div className="mb-8 grid grid-cols-4 gap-6">
           {statCards.map((card) => (
             <StatCard key={card.label} {...card} />
@@ -333,7 +328,7 @@ export default function Index({
             )}
           </div>
         </div>
-      </main>
+      </Layout>
 
       <AppointmentFormModal
         isOpen={modalOpen}
@@ -355,6 +350,6 @@ export default function Index({
         confirmLabel="Eliminar"
       />
       <Toast />
-    </div>
+    </>
   )
 }

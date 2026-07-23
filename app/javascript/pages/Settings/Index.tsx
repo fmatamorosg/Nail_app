@@ -1,5 +1,5 @@
+import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
-import Sidebar from '@/components/Sidebar'
 import Toast from '@/components/Toast'
 import { useForm } from '@inertiajs/react'
 import { type FormEvent } from 'react'
@@ -60,22 +60,13 @@ export default function Index({ business, user_email }: SettingsProps) {
   }
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Sidebar active="Configuración" userName="Yeri" />
-
-      <main className="ml-64 flex-1 p-8">
-        <header className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
-              Configuración
-            </h1>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">
-              Datos del salón y seguridad de la cuenta
-            </p>
-          </div>
-          <NotificationBell />
-        </header>
-
+    <>
+      <Layout
+        active="Configuración"
+        title="Configuración"
+        subtitle="Datos del salón y seguridad de la cuenta"
+        headerActions={<NotificationBell />}
+      >
         <div className="max-w-2xl space-y-6">
           <section className="rounded-2xl bg-white p-6 shadow-lg dark:bg-slate-800">
             <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
@@ -241,9 +232,9 @@ export default function Index({ business, user_email }: SettingsProps) {
             </form>
           </section>
         </div>
-      </main>
+      </Layout>
 
       <Toast />
-    </div>
+    </>
   )
 }

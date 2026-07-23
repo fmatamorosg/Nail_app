@@ -1,5 +1,5 @@
+import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
-import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import Toast from '@/components/Toast'
 import { formatCurrency } from '@/lib/format-currency'
@@ -80,22 +80,14 @@ export default function Index({
   ]
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Sidebar active="Inicio" userName={user_name} />
-
-      <main className="ml-64 flex-1 p-8">
-        <header className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
-              Buenos días, {user_name}
-            </h1>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">{today_date}</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <NotificationBell />
-          </div>
-        </header>
-
+    <>
+      <Layout
+        active="Inicio"
+        userName={user_name}
+        title={`Buenos días, ${user_name}`}
+        subtitle={today_date}
+        headerActions={<NotificationBell />}
+      >
         <div className="mb-8 grid grid-cols-4 gap-6">
           {statCards.map((card) => (
             <StatCard key={card.label} {...card} />
@@ -219,8 +211,8 @@ export default function Index({
             </table>
           )}
         </div>
-      </main>
+      </Layout>
       <Toast />
-    </div>
+    </>
   )
 }

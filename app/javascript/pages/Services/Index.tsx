@@ -1,7 +1,7 @@
 import ConfirmDialog from '@/components/ConfirmDialog'
+import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
 import ServiceFormModal from '@/components/ServiceFormModal'
-import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import Toast from '@/components/Toast'
 import { formatCurrency } from '@/lib/format-currency'
@@ -76,18 +76,13 @@ export default function Index({ services, stats }: ServicesProps) {
   ]
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Sidebar active="Servicios" userName="Yeri" />
-
-      <main className="ml-64 flex-1 p-8">
-        <header className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Servicios</h1>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">
-              Catálogo de servicios del salón
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
+    <>
+      <Layout
+        active="Servicios"
+        title="Servicios"
+        subtitle="Catálogo de servicios del salón"
+        headerActions={
+          <>
             <button
               type="button"
               onClick={() => {
@@ -100,9 +95,9 @@ export default function Index({ services, stats }: ServicesProps) {
               Nuevo servicio
             </button>
             <NotificationBell />
-          </div>
-        </header>
-
+          </>
+        }
+      >
         <div className="mb-8 grid grid-cols-4 gap-6">
           {statCards.map((card) => (
             <StatCard key={card.label} {...card} />
@@ -182,7 +177,7 @@ export default function Index({ services, stats }: ServicesProps) {
             ))}
           </div>
         )}
-      </main>
+      </Layout>
 
       <ServiceFormModal
         isOpen={modalOpen}
@@ -202,6 +197,6 @@ export default function Index({ services, stats }: ServicesProps) {
         confirmLabel="Eliminar"
       />
       <Toast />
-    </div>
+    </>
   )
 }

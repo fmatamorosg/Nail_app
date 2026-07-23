@@ -1,5 +1,5 @@
+import Layout from '@/components/Layout'
 import NotificationBell from '@/components/NotificationBell'
-import Sidebar from '@/components/Sidebar'
 import StatCard from '@/components/StatCard'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { formatCurrency } from '@/lib/format-currency'
@@ -122,23 +122,13 @@ export default function Index({
   ]
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
-      <Sidebar active="Estadísticas" userName="Yeri" />
-
-      <main className="ml-64 flex-1 p-8">
-        <header className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">
-              Estadísticas
-            </h1>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">
-              Resumen del rendimiento del salón
-            </p>
-          </div>
-          <NotificationBell />
-        </header>
-
-        <div className="grid grid-cols-4 gap-6">
+    <Layout
+      active="Estadísticas"
+      title="Estadísticas"
+      subtitle="Resumen del rendimiento del salón"
+      headerActions={<NotificationBell />}
+    >
+      <div className="grid grid-cols-4 gap-6">
           {statCards.map((card) => (
             <StatCard key={card.label} {...card} />
           ))}
@@ -282,7 +272,6 @@ export default function Index({
             )}
           </ChartCard>
         </div>
-      </main>
-    </div>
+    </Layout>
   )
 }
