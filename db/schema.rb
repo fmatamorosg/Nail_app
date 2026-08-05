@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_20_130000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_05_104000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,11 +18,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_20_130000) do
     t.bigint "client_id", null: false
     t.datetime "created_at", null: false
     t.text "notes"
+    t.bigint "organization_id", null: false
     t.datetime "scheduled_at"
     t.bigint "service_id", null: false
     t.string "status", default: "confirmed"
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_appointments_on_client_id"
+    t.index ["organization_id"], name: "index_appointments_on_organization_id"
     t.index ["service_id"], name: "index_appointments_on_service_id"
   end
 
@@ -32,9 +34,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_20_130000) do
     t.string "instagram_handle"
     t.string "name"
     t.text "notes"
+    t.bigint "organization_id", null: false
     t.string "phone"
     t.datetime "updated_at", null: false
     t.boolean "vip"
+    t.index ["organization_id"], name: "index_clients_on_organization_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "services", force: :cascade do |t|
@@ -43,8 +53,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_20_130000) do
     t.text "description"
     t.integer "duration_minutes"
     t.string "name"
+    t.bigint "organization_id", null: false
     t.decimal "price"
     t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_services_on_organization_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,14 +67,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_20_130000) do
     t.string "email"
     t.string "encrypted_password", default: "", null: false
     t.string "name"
+    t.bigint "organization_id", null: false
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
-    t.string "role"
+    t.integer "role", default: 0, null: false
     t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "appointments", "clients"
+  add_foreign_key "appointments", "organizations"
   add_foreign_key "appointments", "services"
+  add_foreign_key "clients", "organizations"
+  add_foreign_key "services", "organizations"
+  add_foreign_key "users", "organizations"
 end

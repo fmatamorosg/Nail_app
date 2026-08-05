@@ -1,8 +1,12 @@
+organization = Organization.find_or_create_by!(name: "Yeri Nail Studio")
+
 user = User.find_or_create_by!(email: "yeri@nailapp.com") do |u|
   u.name = "Yeri"
   u.password = "password123"
   u.role = "admin"
+  u.organization = organization
 end
+user.update!(organization: organization) if user.organization.nil?
 
 services_data = [
   { name: "Manicura clásica", price: 8000, duration_minutes: 30 },

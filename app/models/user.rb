@@ -2,7 +2,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum :role, { admin: "admin" }
+  belongs_to :organization
+
+  enum :role, { employee: 0, admin: 1, owner: 2 }
 
   validates :name, presence: true
 end

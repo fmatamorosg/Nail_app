@@ -1,4 +1,5 @@
 class Client < ApplicationRecord
+  belongs_to :organization
   has_many :appointments
 
   before_validation :normalize_phone

@@ -1,4 +1,5 @@
 class Appointment < ApplicationRecord
+  belongs_to :organization
   belongs_to :client
   belongs_to :service
 

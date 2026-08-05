@@ -1,3 +1,4 @@
 class Service < ApplicationRecord
-    has_many :appointments
+  belongs_to :organization
+  has_many :appointments
 end
