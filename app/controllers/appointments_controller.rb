@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+  before_action :forbid_employee_appointment_mutations!, only: [ :create, :update, :destroy ]
+
   def index
     scope = Appointment.includes(:client, :service).order(scheduled_at: :asc)
 

@@ -1,4 +1,10 @@
 import { useDarkMode } from '@/hooks/useDarkMode'
+import {
+  canSeeNavItem,
+  sidebarRoleLabel,
+  type NavLabel,
+  type TeamRole,
+} from '@/types/user'
 import { Link, router, usePage } from '@inertiajs/react'
 import {
   BarChart3,
@@ -10,31 +16,28 @@ import {
   Scissors,
   Settings,
   Sun,
+  UserCog,
   Users,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-
-type NavLabel =
-  | 'Inicio'
-  | 'Citas'
-  | 'Clientes'
-  | 'Servicios'
-  | 'Estadísticas'
-  | 'Mensajes'
-  | 'Configuración'
 
 interface SidebarProps {
   active: NavLabel
   userName: string
 }
 
-const navItems: { label: NavLabel; icon: LucideIcon; href: string }[] = [
+const navItems: {
+  label: NavLabel
+  icon: LucideIcon
+  href: string
+}[] = [
   { label: 'Inicio', icon: Home, href: '/' },
   { label: 'Citas', icon: Calendar, href: '/appointments' },
   { label: 'Clientes', icon: Users, href: '/clients' },
   { label: 'Servicios', icon: Scissors, href: '/services' },
   { label: 'Estadísticas', icon: BarChart3, href: '/statistics' },
   { label: 'Mensajes', icon: MessageSquare, href: '/messages' },
+  { label: 'Equipo', icon: UserCog, href: '/team' },
   { label: 'Configuración', icon: Settings, href: '/settings' },
 ]
 
@@ -44,8 +47,12 @@ function userInitial(name: string): string {
 
 export default function Sidebar({ active, userName }: SidebarProps) {
   const { isDark, toggleDarkMode } = useDarkMode()
-  const { props } = usePage<{ business_name?: string | null }>()
+  const { props } = usePage<{ business_name?: string | null; user_role?: TeamRole | null }>()
   const businessName = props.business_name || 'Nail Studio'
+  const userRole = props.user_role
+  const roleLabel = sidebarRoleLabel(userRole)
+
+  const visibleNavItems = navItems.filter((item) => canSeeNavItem(item.label, userRole))
 
   function handleLogout() {
     router.delete('/users/sign_out')
@@ -66,7 +73,7 @@ export default function Sidebar({ active, userName }: SidebarProps) {
       </div>
 
       <nav className="flex-1 space-y-1 px-4 py-6">
-        {navItems.map(({ label, icon: Icon, href }) => (
+        {visibleNavItems.map(({ label, icon: Icon, href }) => (
           <Link
             key={label}
             href={href}
@@ -102,7 +109,9 @@ export default function Sidebar({ active, userName }: SidebarProps) {
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium">{userName}</p>
-            <p className="text-xs text-slate-400">Administrador</p>
+            {roleLabel && (
+              <p className="text-xs text-slate-400">{roleLabel}</p>
+            )}
           </div>
           <button
             type="button"
@@ -117,3 +126,5 @@ export default function Sidebar({ active, userName }: SidebarProps) {
     </aside>
   )
 }
+
+export type { NavLabel }

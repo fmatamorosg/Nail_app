@@ -8,7 +8,8 @@ import Toast from '@/components/Toast'
 import { type Appointment } from '@/types/appointment'
 import { type ClientOption } from '@/types/client'
 import { type ServiceOption } from '@/types/service'
-import { Link, router } from '@inertiajs/react'
+import { canEditAppointments, type TeamRole } from '@/types/user'
+import { Link, router, usePage } from '@inertiajs/react'
 import {
   Calendar,
   CheckCircle,
@@ -85,7 +86,11 @@ export default function Index({
   clients,
   services,
 }: AppointmentsProps) {
+  const { props } = usePage<{ user_role?: TeamRole | null }>()
+  const canEdit = canEditAppointments(props.user_role)
+
   const [modalOpen, setModalOpen] = useState(() => {
+    if (!canEdit) return false
     const params = new URLSearchParams(window.location.search)
     return Boolean(params.get('edit'))
   })
@@ -94,6 +99,7 @@ export default function Index({
     useState<Appointment | null>(null)
   const [editingAppointment, setEditingAppointment] =
     useState<Appointment | null>(() => {
+      if (!canEdit) return null
       const params = new URLSearchParams(window.location.search)
       const editId = params.get('edit')
       if (!editId) return null
@@ -149,17 +155,19 @@ export default function Index({
         subtitle="Gestiona y consulta todas las citas"
         headerActions={
           <>
-            <button
-              type="button"
-              onClick={() => {
-                setEditingAppointment(null)
-                setModalOpen(true)
-              }}
-              className="flex items-center gap-2 rounded-lg bg-pink-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-pink-600"
-            >
-              <Plus className="h-4 w-4" />
-              Nueva cita
-            </button>
+            {canEdit && (
+              <button
+                type="button"
+                onClick={() => {
+                  setEditingAppointment(null)
+                  setModalOpen(true)
+                }}
+                className="flex items-center gap-2 rounded-lg bg-pink-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-pink-600"
+              >
+                <Plus className="h-4 w-4" />
+                Nueva cita
+              </button>
+            )}
             <NotificationBell />
           </>
         }
@@ -204,14 +212,23 @@ export default function Index({
 
         <AppointmentsTable
           appointments={appointments}
-          onEdit={(appointment) => {
-            setEditingAppointment(appointment)
-            setModalOpen(true)
-          }}
-          onDelete={(appointment) => {
-            setAppointmentToDelete(appointment)
-            setDeleteConfirmOpen(true)
-          }}
+          canEdit={canEdit}
+          onEdit={
+            canEdit
+              ? (appointment) => {
+                  setEditingAppointment(appointment)
+                  setModalOpen(true)
+                }
+              : undefined
+          }
+          onDelete={
+            canEdit
+              ? (appointment) => {
+                  setAppointmentToDelete(appointment)
+                  setDeleteConfirmOpen(true)
+                }
+              : undefined
+          }
         />
 
         <div className="mt-6 flex items-center justify-between">
@@ -257,26 +274,30 @@ export default function Index({
         </div>
       </Layout>
 
-      <AppointmentFormModal
-        key={editingAppointment?.id ?? 'new'}
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        clients={clients}
-        services={services}
-        appointment={editingAppointment}
-      />
-      <ConfirmDialog
-        isOpen={deleteConfirmOpen}
-        onClose={() => setDeleteConfirmOpen(false)}
-        onConfirm={() => {
-          if (appointmentToDelete) {
-            router.delete(`/appointments/${appointmentToDelete.id}`)
-          }
-        }}
-        title="Eliminar cita"
-        message={`¿Eliminar la cita de ${appointmentToDelete?.client_name}? Esta acción no se puede deshacer.`}
-        confirmLabel="Eliminar"
-      />
+      {canEdit && (
+        <>
+          <AppointmentFormModal
+            key={editingAppointment?.id ?? 'new'}
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            clients={clients}
+            services={services}
+            appointment={editingAppointment}
+          />
+          <ConfirmDialog
+            isOpen={deleteConfirmOpen}
+            onClose={() => setDeleteConfirmOpen(false)}
+            onConfirm={() => {
+              if (appointmentToDelete) {
+                router.delete(`/appointments/${appointmentToDelete.id}`)
+              }
+            }}
+            title="Eliminar cita"
+            message={`¿Eliminar la cita de ${appointmentToDelete?.client_name}? Esta acción no se puede deshacer.`}
+            confirmLabel="Eliminar"
+          />
+        </>
+      )}
       <Toast />
     </>
   )

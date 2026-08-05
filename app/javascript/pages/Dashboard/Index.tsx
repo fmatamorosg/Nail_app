@@ -5,6 +5,7 @@ import Toast from '@/components/Toast'
 import { formatCurrency } from '@/lib/format-currency'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
+import { usePage } from '@inertiajs/react'
 import {
   Calendar,
   DollarSign,
@@ -27,7 +28,6 @@ interface PopularService {
 }
 
 interface DashboardProps {
-  user_name: string
   user_role: string
   today_date: string
   stats: {
@@ -42,7 +42,6 @@ interface DashboardProps {
 }
 
 export default function Index({
-  user_name,
   user_role,
   today_date,
   stats,
@@ -50,6 +49,9 @@ export default function Index({
   recent_clients,
   popular_services,
 }: DashboardProps) {
+  const { props } = usePage<{ user_name?: string | null }>()
+  const userName = props.user_name ?? ''
+
   const statCards = [
     {
       label: 'Citas de hoy',
@@ -85,8 +87,7 @@ export default function Index({
     <>
       <Layout
         active="Inicio"
-        userName={user_name}
-        title={`Buenos días, ${user_name}`}
+        title={`Buenos días, ${userName}`}
         subtitle={today_date}
         headerActions={<NotificationBell />}
       >

@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+  before_action :require_manager!
+
   def index
     render inertia: "Services/Index", props: {
       services: services,

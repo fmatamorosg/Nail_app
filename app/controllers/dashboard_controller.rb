@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
+  before_action :redirect_employees_from_dashboard!
+
   def index
     render inertia: "Dashboard/Index", props: {
-      user_name: current_user.name,
       user_role: current_user.role,
       today_date: I18n.l(Date.current, format: "%A, %d de %B de %Y"),
       stats: stats,

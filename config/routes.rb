@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   patch "settings/business", to: "settings#update_business"
   patch "settings/password", to: "settings#update_password"
 
+  resources :team, only: [ :index, :create, :update, :destroy ]
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

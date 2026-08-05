@@ -1,11 +1,11 @@
 import Sidebar from '@/components/Sidebar'
+import { usePage } from '@inertiajs/react'
 import type { ReactNode } from 'react'
 
 interface LayoutProps {
   active: string
   title: string
   subtitle: string
-  userName?: string
   headerActions?: ReactNode
   children: ReactNode
 }
@@ -14,10 +14,12 @@ export default function Layout({
   active,
   title,
   subtitle,
-  userName = 'Yeri',
   headerActions,
   children,
 }: LayoutProps) {
+  const { props } = usePage<{ user_name?: string | null }>()
+  const userName = props.user_name ?? ''
+
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-slate-900">
       <Sidebar active={active} userName={userName} />

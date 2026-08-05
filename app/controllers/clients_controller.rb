@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  before_action :require_manager!
+
   def index
     scope = Client.order(:name)
 

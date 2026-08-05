@@ -7,12 +7,14 @@ import { Pencil, Trash2 } from 'lucide-react'
 
 interface AppointmentsTableProps {
   appointments: Appointment[]
-  onEdit: (appointment: Appointment) => void
-  onDelete: (appointment: Appointment) => void
+  canEdit?: boolean
+  onEdit?: (appointment: Appointment) => void
+  onDelete?: (appointment: Appointment) => void
 }
 
 export default function AppointmentsTable({
   appointments,
+  canEdit = true,
   onEdit,
   onDelete,
 }: AppointmentsTableProps) {
@@ -41,9 +43,11 @@ export default function AppointmentsTable({
               <th scope="col" className="px-6 py-3">
                 Estado
               </th>
-              <th scope="col" className="px-6 py-3">
-                Acciones
-              </th>
+              {canEdit && (
+                <th scope="col" className="px-6 py-3">
+                  Acciones
+                </th>
+              )}
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
@@ -68,26 +72,28 @@ export default function AppointmentsTable({
                     {statusLabels[appointment.status]}
                   </span>
                 </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      aria-label={`Editar cita de ${appointment.client_name}`}
-                      onClick={() => onEdit(appointment)}
-                      className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-700 dark:hover:text-slate-200"
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </button>
-                    <button
-                      type="button"
-                      aria-label={`Eliminar cita de ${appointment.client_name}`}
-                      onClick={() => onDelete(appointment)}
-                      className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-700"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  </div>
-                </td>
+                {canEdit && (
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        aria-label={`Editar cita de ${appointment.client_name}`}
+                        onClick={() => onEdit?.(appointment)}
+                        className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-700 dark:hover:text-slate-200"
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label={`Eliminar cita de ${appointment.client_name}`}
+                        onClick={() => onDelete?.(appointment)}
+                        className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-700"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

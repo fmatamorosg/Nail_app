@@ -1,13 +1,18 @@
 class SettingsController < ApplicationController
+  before_action :require_owner!, only: [ :update_business ]
+
   def index
-    render inertia: "Settings/Index", props: {
-      business: {
+    props = { user_email: current_user.email }
+
+    if current_user.owner?
+      props[:business] = {
         name: current_user.business_name,
         phone: current_user.business_phone,
         address: current_user.business_address
-      },
-      user_email: current_user.email
-    }, as: :json
+      }
+    end
+
+    render inertia: "Settings/Index", props: props, as: :json
   end
 
   def update_business
