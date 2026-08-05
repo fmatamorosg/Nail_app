@@ -22,5 +22,5 @@ export function useModalAccessibility(
     initialFocusRef.current?.focus()
 
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen])
+  }, [isOpen, initialFocusRef])
 }

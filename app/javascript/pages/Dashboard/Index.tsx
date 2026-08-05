@@ -28,7 +28,6 @@ interface PopularService {
 }
 
 interface DashboardProps {
-  user_role: string
   today_date: string
   stats: {
     appointments_today: number
@@ -42,7 +41,6 @@ interface DashboardProps {
 }
 
 export default function Index({
-  user_role,
   today_date,
   stats,
   today_appointments,
