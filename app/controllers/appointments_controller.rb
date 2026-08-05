@@ -2,7 +2,7 @@ class AppointmentsController < ApplicationController
   before_action :forbid_employee_appointment_mutations!, only: [ :create, :update, :destroy ]
 
   def index
-    scope = Appointment.includes(:client, :service).order(scheduled_at: :asc)
+    scope = current_user.organization.appointments.includes(:client, :service).order(scheduled_at: :asc)
 
     if params[:status].present? && params[:status] != "all"
       scope = scope.where(status: params[:status])
@@ -37,10 +37,10 @@ class AppointmentsController < ApplicationController
         }
       end,
       stats: {
-        total_week: Appointment.where(scheduled_at: Date.current.beginning_of_week..Date.current.end_of_week).count,
-        confirmed: Appointment.where(status: "confirmed").count,
-        cancelled: Appointment.where(status: "cancelled").count,
-        completed: Appointment.where(status: "completed").count
+        total_week: current_user.organization.appointments.where(scheduled_at: Date.current.beginning_of_week..Date.current.end_of_week).count,
+        confirmed: current_user.organization.appointments.where(status: "confirmed").count,
+        cancelled: current_user.organization.appointments.where(status: "cancelled").count,
+        completed: current_user.organization.appointments.where(status: "completed").count
       },
       filters: {
         status: params[:status] || "all",
@@ -53,13 +53,13 @@ class AppointmentsController < ApplicationController
         pages: pagy.pages,
         count: pagy.count
       },
-      clients: Client.order(:name).select(:id, :name).map { |c| { id: c.id, name: c.name } },
-      services: Service.order(:name).select(:id, :name, :duration_minutes, :price).map { |s| { id: s.id, name: s.name, duration_minutes: s.duration_minutes, price: s.price.to_f } }
+      clients: current_user.organization.clients.order(:name).select(:id, :name).map { |c| { id: c.id, name: c.name } },
+      services: current_user.organization.services.order(:name).select(:id, :name, :duration_minutes, :price).map { |s| { id: s.id, name: s.name, duration_minutes: s.duration_minutes, price: s.price.to_f } }
     }, as: :json
   end
 
   def create
-    appointment = Appointment.new(appointment_params)
+    appointment = current_user.organization.appointments.new(appointment_params)
     if appointment.save
       redirect_to appointments_path, notice: "Cita creada correctamente"
     else
@@ -68,7 +68,7 @@ class AppointmentsController < ApplicationController
   end
 
   def update
-    appointment = Appointment.find(params[:id])
+    appointment = current_user.organization.appointments.find(params[:id])
     if appointment.update(appointment_params)
       redirect_to appointments_path, notice: "Cita actualizada correctamente"
     else
@@ -77,7 +77,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    appointment = Appointment.find(params[:id])
+    appointment = current_user.organization.appointments.find(params[:id])
     appointment.destroy
     redirect_to appointments_path, notice: "Cita eliminada correctamente"
   end
