@@ -9,10 +9,9 @@ import { formatPhone } from '@/lib/format-phone'
 import { type AppointmentStatus, statusLabels, statusStyles } from '@/types/appointment'
 import { type ClientSummary } from '@/types/client'
 import { type ServiceOption } from '@/types/service'
-import { useModalAccessibility } from '@/lib/useModalAccessibility'
 import { router } from '@inertiajs/react'
-import { AlertTriangle, Phone, Plus, Search } from 'lucide-react'
-import { useId, useRef, useState, type FormEvent } from 'react'
+import { Phone, Plus, Search } from 'lucide-react'
+import { useState, type FormEvent } from 'react'
 
 interface AppointmentHistoryItem {
   id: number
@@ -53,7 +52,6 @@ function formatInstagramDisplay(handle: string | null | undefined): string | nul
 export default function Index({ clients, stats, filters, services }: ClientsProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false)
-  const [cannotDeleteModalOpen, setCannotDeleteModalOpen] = useState(false)
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
   const [editingClient, setEditingClient] = useState<Client | null>(null)
   const [selectedClientId, setSelectedClientId] = useState<number | null>(
@@ -62,14 +60,6 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
 
   const selectedClient =
     clients.find((client) => client.id === selectedClientId) ?? clients[0] ?? null
-
-  const cannotDeleteTitleId = useId()
-  const cannotDeleteCloseRef = useRef<HTMLButtonElement>(null)
-  useModalAccessibility(
-    cannotDeleteModalOpen,
-    () => setCannotDeleteModalOpen(false),
-    cannotDeleteCloseRef,
-  )
 
   function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -315,13 +305,7 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
                 </div>
                 <button
                   type="button"
-                  onClick={() => {
-                    if (selectedClient.appointment_history.length > 0) {
-                      setCannotDeleteModalOpen(true)
-                      return
-                    }
-                    setDeleteConfirmOpen(true)
-                  }}
+                  onClick={() => setDeleteConfirmOpen(true)}
                   className="mt-2 w-full rounded-lg bg-transparent px-4 py-2 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/30"
                 >
                   Eliminar cliente
@@ -348,57 +332,6 @@ export default function Index({ clients, stats, filters, services }: ClientsProp
           appointment={null}
           initialClientId={selectedClient.id}
         />
-      )}
-      {cannotDeleteModalOpen && selectedClient && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={cannotDeleteTitleId}
-            className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl dark:bg-slate-800"
-          >
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/40">
-                <AlertTriangle
-                  className="h-6 w-6 text-amber-600 dark:text-amber-400"
-                  aria-hidden="true"
-                />
-              </div>
-              <h2
-                id={cannotDeleteTitleId}
-                className="text-xl font-bold text-slate-900 dark:text-slate-100"
-              >
-                No se puede eliminar este cliente
-              </h2>
-              <p className="mt-3 text-sm text-slate-600 dark:text-slate-400">
-                {selectedClient.name} tiene citas registradas. Elimina o
-                reasigna sus citas primero para poder eliminar su perfil.
-              </p>
-            </div>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <button
-                ref={cannotDeleteCloseRef}
-                type="button"
-                onClick={() => setCannotDeleteModalOpen(false)}
-                className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-              >
-                Cerrar
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setCannotDeleteModalOpen(false)
-                  router.visit(
-                    `/appointments?search=${encodeURIComponent(selectedClient.name)}`,
-                  )
-                }}
-                className="rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-amber-600"
-              >
-                Ver citas de este cliente
-              </button>
-            </div>
-          </div>
-        </div>
       )}
       <ConfirmDialog
         isOpen={deleteConfirmOpen}

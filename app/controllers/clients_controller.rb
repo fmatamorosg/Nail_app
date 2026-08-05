@@ -45,13 +45,14 @@ class ClientsController < ApplicationController
   def destroy
     client = Client.find(params[:id])
 
-    if client.appointments.exists?
-      redirect_to clients_path, alert: "No se puede eliminar a #{client.name} porque tiene citas registradas. Elimina o reasigna sus citas primero."
+    if client.appointments.where("scheduled_at >= ?", 7.days.ago).exists?
+      redirect_to clients_path, alert: "No se puede eliminar a #{client.name} porque tiene citas próximas o de la última semana. Esperá a que pase ese período, o cancelá/reasigná la cita primero."
     else
       client.destroy
       redirect_to clients_path, notice: "Cliente eliminado correctamente"
     end
   end
+
 
   private
 
