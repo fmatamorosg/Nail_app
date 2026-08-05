@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root "dashboard#index"
 
   resources :appointments
+  resources :pending_checks, only: [ :index, :update ]
   resources :clients
   resources :services
 

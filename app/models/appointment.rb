@@ -3,7 +3,7 @@ class Appointment < ApplicationRecord
   belongs_to :client
   belongs_to :service
 
-  enum :status, { confirmed: "confirmed", completed: "completed", cancelled: "cancelled" }
+  enum :status, { confirmed: "confirmed", completed: "completed", cancelled: "cancelled", absent: "absent" }
 
   before_validation :assign_default_status, on: :create
 
@@ -12,6 +12,14 @@ class Appointment < ApplicationRecord
   scope :today, -> { where(scheduled_at: Date.current.all_day) }
   scope :this_month, -> { where(scheduled_at: Date.current.beginning_of_month..Date.current.end_of_month) }
   scope :this_week, -> { where(scheduled_at: Date.current.beginning_of_week..Date.current.end_of_week) }
+  scope :pending_attendance_check, -> {
+    joins(:service)
+      .where(status: "confirmed")
+      .where(
+        "appointments.scheduled_at + (services.duration_minutes * interval '1 minute') + interval '5 minutes' < ?",
+        Time.current
+      )
+  }
 
   private
 

@@ -12,6 +12,13 @@ export interface Appointment {
   status: AppointmentStatus
 }
 
+export interface PendingCheck {
+  id: number
+  client_name: string
+  service_name: string
+  scheduled_at: string
+}
+
 export const statusLabels: Record<AppointmentStatus, string> = {
   confirmed: "Confirmada",
   completed: "Completada",
